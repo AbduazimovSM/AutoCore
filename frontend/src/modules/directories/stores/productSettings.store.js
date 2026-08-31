@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
+
+const STORAGE_KEY = 'productSettings';
 
 const defaultFields = {
     name: true,
@@ -15,31 +17,54 @@ const defaultFields = {
 };
 
 export const useProductSettingsStore = defineStore('productSettings', () => {
-    const saved = localStorage.getItem('productSettings');
+    const fields = ref(loadSettings());
 
-    const fields = ref(
-        saved
-            ? { ...defaultFields, ...JSON.parse(saved) }
-            : { ...defaultFields }
-    );
+    function loadSettings() {
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
 
-    watch(
-        fields,
-        (value) => {
-            localStorage.setItem(
-                'productSettings',
-                JSON.stringify(value)
-            );
-        },
-        { deep: true }
-    );
+            if (!saved) {
+                return { ...defaultFields };
+            }
+
+            return {
+                ...defaultFields,
+                ...JSON.parse(saved)
+            };
+        } catch {
+            return { ...defaultFields };
+        }
+    }
+
+    function save(newFields) {
+        fields.value = {
+            ...defaultFields,
+            ...newFields
+        };
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(fields.value)
+        );
+    }
 
     function reset() {
         fields.value = { ...defaultFields };
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(fields.value)
+        );
+    }
+
+    function getDefaults() {
+        return { ...defaultFields };
     }
 
     return {
         fields,
-        reset
+        save,
+        reset,
+        getDefaults
     };
 });

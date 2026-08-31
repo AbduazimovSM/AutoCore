@@ -95,7 +95,8 @@
 
                 <Column style="width: 4.1rem" :exportable="false">
                     <template #header>
-                        <Button icon="pi pi-cog" rounded text severity="secondary" @click="productSettingsDialog = true" />
+                        <Button icon="pi pi-cog" rounded text severity="secondary"
+                            @click="productSettingsDialog = true" />
                     </template>
                     <template #body="{ data }">
                         <Button icon="pi pi-ellipsis-h" rounded text severity="secondary"
@@ -129,9 +130,7 @@
                 </template>
             </Paginator>
             <ProductDialog />
-            <ProductSettingsDialog
-    v-model="productSettingsDialog"
-/>
+            <ProductSettingsDialog v-model="productSettingsDialog" />
 
             <DeleteProductDialog v-model="deleteProductDialog" :item-name="selectedProduct?.name"
                 :loading="loadingDeleteProduct" @confirm="destroyProduct" />

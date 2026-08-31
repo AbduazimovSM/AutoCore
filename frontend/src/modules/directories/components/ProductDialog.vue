@@ -2,95 +2,203 @@
     <Dialog v-model:visible="dialogStore.visible" maximizable :style="{ width: '800px' }"
         :header="t('directories.products.dialog.title_product')" modal class="p-fluid">
 
-        <div class="grid grid-cols-2 gap-2 mt-4">
-            <div v-if="productSettings.fields.name" class="field">
-                <FloatLabel variant="on">
-                    <InputText id="name" v-model.trim="product.name" autofocus :invalid="submitted && !product.name"
-                        fluid />
-                    <label for="name">{{ t('directories.products.table.name') }}</label>
-                </FloatLabel>
-                <small v-if="submitted && !product.name" class="p-error"> {{ t('global.messages.required') }} </small>
-            </div>
+<div class="product-form">
+    <div v-if="productSettings.fields.name" class="field">
+        <FloatLabel variant="on">
+            <InputText
+                id="name"
+                v-model.trim="product.name"
+                autofocus
+                :invalid="submitted && !product.name"
+                fluid
+            />
+            <label for="name">
+                {{ t('directories.products.table.name') }}
+            </label>
+        </FloatLabel>
 
-            <div v-if="productSettings.fields.barcode" class="field">
-                <FloatLabel variant="on">
-                    <InputText id="barcode" v-model.trim="product.barcode" fluid />
-                    <label for="barcode">{{ t('directories.products.table.barcode') }}</label>
-                </FloatLabel>
-            </div>
-        </div>
+        <small
+            v-if="submitted && !product.name"
+            class="p-error"
+        >
+            {{ t('global.messages.required') }}
+        </small>
+    </div>
 
-        <div class="grid grid-cols-2 gap-2 mt-8">
-            <div v-if="productSettings.fields.sku" class="field">
-                <FloatLabel variant="on">
-                    <InputText id="sku" v-model.trim="product.sku" fluid />
-                    <label for="sku">{{ t('directories.products.table.sku') }}</label>
-                </FloatLabel>
-            </div>
+    <div v-if="productSettings.fields.barcode" class="field">
+        <FloatLabel variant="on">
+            <InputText
+                id="barcode"
+                v-model.trim="product.barcode"
+                fluid
+            />
+            <label for="barcode">
+                {{ t('directories.products.table.barcode') }}
+            </label>
+        </FloatLabel>
+    </div>
 
-            <div v-if="productSettings.fields.category" class="field">
-                <FloatLabel variant="on">
-                    <AppTreeSelect v-model="product.category_id" :loader="loadCategories" />
-                    <label>{{ t('directories.products.table.category') }}</label>
-                </FloatLabel>
-                <small v-if="submitted && !product.category_id" class="p-error">{{ t('global.messages.required')
-                }}</small>
-            </div>
-        </div>
+    <div v-if="productSettings.fields.sku" class="field">
+        <FloatLabel variant="on">
+            <InputText
+                id="sku"
+                v-model.trim="product.sku"
+                fluid
+            />
+            <label for="sku">
+                {{ t('directories.products.table.sku') }}
+            </label>
+        </FloatLabel>
+    </div>
 
-        <div class="grid grid-cols-2 gap-2 mt-8">
-            <div v-if="productSettings.fields.unit" class="field">
-                <FloatLabel variant="on">
-                    <AppSelect v-model="product.unit_id" :loader="loadUnits" :show-add="false" />
-                    <label>{{ t('directories.products.table.unit') }}</label>
-                </FloatLabel>
-                <small v-if="submitted && !product.unit_id" class="p-error"> {{ t('global.messages.required') }}
-                </small>
-            </div>
-            <div v-if="productSettings.fields.brand" class="field">
-                <FloatLabel variant="on">
-                    <AppSelect v-model="product.brand_id" :loader="loadBrands" :show-add="false" />
-                    <label>{{ t('directories.products.table.brand') }}</label>
-                </FloatLabel>
-            </div>
-        </div>
+    <div v-if="productSettings.fields.category" class="field">
+        <FloatLabel variant="on">
+            <AppTreeSelect
+                v-model="product.category_id"
+                :loader="loadCategories"
+            />
 
-        <div class="grid grid-cols-2 gap-2 mt-8">
-            <div v-if="productSettings.fields.min_quantity" class="field">
-                <FloatLabel variant="on">
-                    <InputNumber id="min_quantity" v-model="product.min_quantity" :min="0" :minFractionDigits="0"
-                        :maxFractionDigits="3" fluid />
-                    <label for="min_quantity">{{ t('directories.products.table.min_quantity') }}</label>
-                </FloatLabel>
-            </div>
-            <div v-if="productSettings.fields.image" class="font-medium">
-                <FileUpload mode="basic" name="image" accept="image/*" :maxFileSize="2000000" :auto="false" customUpload
-                    @select="onSelect" :chooseLabel="t('global.buttons.select')" />
-            </div>
-        </div>
+            <label>
+                {{ t('directories.products.table.category') }}
+            </label>
+        </FloatLabel>
 
-        <div v-if="productSettings.fields.description" class="field">
-            <FloatLabel variant="on" class="mt-8">
-                <Textarea id="description" v-model="product.description" rows="3" fluid />
-                <label for="description">{{ t('directories.products.table.description') }}</label>
-            </FloatLabel>
-        </div>
+        <small
+            v-if="submitted && !product.category_id"
+            class="p-error"
+        >
+            {{ t('global.messages.required') }}
+        </small>
+    </div>
 
-        <div v-if="productSettings.fields.status" class="field">
-            <FloatLabel variant="on" class="mt-8">
-                <Select id="status" v-model="product.status" :options="statuses" option-label="label"
-                    option-value="value" fluid />
-                <label for="status">{{ t('directories.products.table.status') }}</label>
-            </FloatLabel>
-        </div>
+    <div v-if="productSettings.fields.unit" class="field">
+        <FloatLabel variant="on">
+            <AppSelect
+                v-model="product.unit_id"
+                :loader="loadUnits"
+                :show-add="false"
+            />
 
-        <div class="reference-dialog-actions">
-            <Button :label="t('global.buttons.cancel')" icon="pi pi-times" text :disabled="saving"
-                @click="dialogStore.close" />
+            <label>
+                {{ t('directories.products.table.unit') }}
+            </label>
+        </FloatLabel>
 
-            <Button :label="t('global.buttons.save')" icon="pi pi-check" text :loading="saving" :disabled="saving"
-                @click="saveProduct" />
-        </div>
+        <small
+            v-if="submitted && !product.unit_id"
+            class="p-error"
+        >
+            {{ t('global.messages.required') }}
+        </small>
+    </div>
+
+    <div v-if="productSettings.fields.brand" class="field">
+        <FloatLabel variant="on">
+            <AppSelect
+                v-model="product.brand_id"
+                :loader="loadBrands"
+                :show-add="false"
+            />
+
+            <label>
+                {{ t('directories.products.table.brand') }}
+            </label>
+        </FloatLabel>
+    </div>
+
+    <div
+        v-if="productSettings.fields.min_quantity"
+        class="field"
+    >
+        <FloatLabel variant="on">
+            <InputNumber
+                id="min_quantity"
+                v-model="product.min_quantity"
+                :min="0"
+                :minFractionDigits="0"
+                :maxFractionDigits="3"
+                fluid
+            />
+
+            <label for="min_quantity">
+                {{ t('directories.products.table.min_quantity') }}
+            </label>
+        </FloatLabel>
+    </div>
+
+    <div
+        v-if="productSettings.fields.image"
+        class="field"
+    >
+        <FileUpload
+            mode="basic"
+            name="image"
+            accept="image/*"
+            :maxFileSize="2000000"
+            :auto="false"
+            customUpload
+            @select="onSelect"
+            :chooseLabel="t('global.buttons.select')"
+        />
+    </div>
+
+    <div
+        v-if="productSettings.fields.description"
+        class="field field-full"
+    >
+        <FloatLabel variant="on">
+            <Textarea
+                id="description"
+                v-model="product.description"
+                rows="3"
+                fluid
+            />
+
+            <label for="description">
+                {{ t('directories.products.table.description') }}
+            </label>
+        </FloatLabel>
+    </div>
+
+    <div
+        v-if="productSettings.fields.status"
+        class="field field-full"
+    >
+        <FloatLabel variant="on">
+            <Select
+                id="status"
+                v-model="product.status"
+                :options="statuses"
+                option-label="label"
+                option-value="value"
+                fluid
+            />
+
+            <label for="status">
+                {{ t('directories.products.table.status') }}
+            </label>
+        </FloatLabel>
+    </div>
+</div>
+
+<div class="product-dialog-actions">
+    <Button
+        :label="t('global.buttons.cancel')"
+        icon="pi pi-times"
+        text
+        :disabled="saving"
+        @click="dialogStore.close"
+    />
+
+    <Button
+        :label="t('global.buttons.save')"
+        icon="pi pi-check"
+        text
+        :loading="saving"
+        :disabled="saving"
+        @click="saveProduct"
+    />
+</div>
     </Dialog>
 </template>
 
@@ -299,3 +407,38 @@ async function saveProduct() {
     }
 }
 </script>
+
+<style scoped>
+.product-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem 0.6rem;
+    margin-top: 1rem;
+}
+
+.field {
+    min-width: 0;
+}
+
+.field-full {
+    grid-column: 1 / -1;
+}
+
+.product-dialog-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+@media (max-width: 700px) {
+    .product-form {
+        grid-template-columns: 1fr;
+    }
+
+    .field-full {
+        grid-column: auto;
+    }
+}
+</style>

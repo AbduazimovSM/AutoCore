@@ -1,7 +1,6 @@
 {
     "counterparties": {
         "title": "Counterparties",
-
         "table": {
             "id": "ID",
             "name": "Name",
@@ -16,29 +15,24 @@
             "status": "Status",
             "active": "Active"
         },
-
         "dialog": {
             "title_counterparty": "Add / edit counterparty",
             "title_confirm": "Confirmation"
         },
-
         "currency": {
             "tjs": "Tajikistani somoni",
             "usd": "US dollar",
             "eur": "Euro",
             "rub": "Russian ruble"
         },
-
         "gender": {
             "unknown": "Unknown",
             "male": "Male",
             "female": "Female"
         }
     },
-
     "products": {
         "title": "Products",
-
         "table": {
             "id": "ID",
             "name": "Name",
@@ -57,20 +51,15 @@
             "view": "Views",
             "description": "Description"
         },
-
         "dialog": {
             "title_product": "Add and edit product"
         },
-
-        "types": {
-            "product": "Product",
-            "service": "Service"
-        },
-
-        "retail": "Retail",
-        "wholesale": "Wholesale"
+        "settings": {
+            "title": "Table settings",
+            "column_name": "Column name",
+            "visibility": "Visibility"
+        }
     },
-
     "errors": {
         "loadFailed": "Failed to load data",
         "saveFailed": "Failed to save data",

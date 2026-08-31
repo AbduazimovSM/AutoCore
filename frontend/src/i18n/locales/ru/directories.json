@@ -1,7 +1,6 @@
 {
     "counterparties": {
         "title": "Контрагенты",
-
         "table": {
             "id": "ID",
             "name": "Название",
@@ -16,29 +15,24 @@
             "status": "Статус",
             "active": "Активен"
         },
-
         "dialog": {
             "title_counterparty": "Добавление и редактирование контрагента",
             "title_confirm": "Подтверждение"
         },
-
         "currency": {
             "tjs": "Таджикский сомони",
             "usd": "Доллар США",
             "eur": "Евро",
             "rub": "Российский рубль"
         },
-
         "gender": {
             "unknown": "Неизвестно",
             "male": "Мужской",
             "female": "Женский"
         }
     },
-
     "products": {
         "title": "Номенклатура",
-
         "table": {
             "id": "ID",
             "name": "Название",
@@ -57,9 +51,13 @@
             "view": "Просмотры",
             "description": "Описание"
         },
-
         "dialog": {
             "title_product": "Добавление и редактирование товара"
+        },
+        "settings": {
+            "title": "Настройки таблицы",
+            "column_name": "Имя столбца",
+            "visibility": "Видимость"
         }
     }
 }
