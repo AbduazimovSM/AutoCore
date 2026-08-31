@@ -43,9 +43,6 @@
 
                 <Column selection-mode="multiple" style="width: 3rem" :exportable="false" />
 
-                <Column v-if="productSettings.fields.id" field="id" :header="t('directories.products.table.id')"
-                    sortable />
-
                 <Column v-if="productSettings.fields.name" field="name" :header="t('directories.products.table.name')"
                     sortable />
 
