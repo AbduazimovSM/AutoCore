@@ -1,0 +1,65 @@
+{
+    "app": {
+        "title": "AutoCore | Automation Core"
+    },
+
+    "buttons": {
+        "cancel": "Cancel",
+        "save": "Save",
+        "no": "No",
+        "yes": "Yes",
+        "create": "Create",
+        "update": "Update",
+        "delete": "Delete",
+        "confirm": "Confirm",
+        "refresh": "Refresh",
+        "clear": "Clear",
+        "select": "Select",
+        "close": "Close",
+        "add": "Add",
+        "search": "Search…",
+        "back": "Back"
+    },
+
+    "pagination": {
+        "report": "Showing {first} to {last} of {totalRecords} records",
+        "empty": "No records"
+    },
+
+    "messages": {
+        "confirm_delete": "Are you sure you want to delete the record \"{name}\" ?",
+        "confirm_delete_selected": "Are you sure you want to delete the ({count}) selected records ?",
+        "no_data": "No data",
+        "loading": "Loading…",
+        "required": "This field is required"
+    },
+
+    "toast": {
+        "success": "Success",
+        "error": "Error",
+        "warning": "Warning",
+        "confirmation": "Confirmation",
+        "info": "Information"
+    },
+
+    "success": {
+        "created": "Record created successfully",
+        "updated": "Record updated successfully",
+        "deleted": "Record deleted successfully",
+        "saved": "Data saved successfully",
+        "delete_selected": "Selected records deleted successfully"
+    },
+
+    "errors": {
+        "load_failed": "Failed to load data",
+        "save_failed": "Failed to save data",
+        "delete_failed": "Failed to delete the record",
+        "delete_selected_failed": "Failed to delete the selected records",
+        "error": "An error occurred"
+    },
+
+    "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+    }
+}

@@ -1,0 +1,31 @@
+{
+  "model": {
+    "table": {
+      "company": "Компания",
+      "filial": "Филиал",
+      "category": "Категория",
+      "parent_category": "Род. категория",
+      "unit": "Единица измерения",
+      "short_name": "Краткое название",
+      "brand": "Бренд",
+      "group": "Группа",
+      "region": "Регион",
+      "specialty": "Специальность",
+      "institution": "Учебное заведение",
+      "role": "Роль",
+
+      "id": "ID",
+      "name": "Название",
+      "code": "Код",
+      "address": "Адрес",
+      "description": "Описание",
+      "status": "Статус"
+    },
+
+    "dialog": {
+      "title_reference": "Добавление и редактирование",
+      "title_confirm": "Подтверждение"
+    }
+
+  }
+}

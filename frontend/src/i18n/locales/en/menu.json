@@ -1,0 +1,103 @@
+{
+  "home": "Dashboard",
+
+  "crm": {
+    "title": "CRM",
+    "kanban": "Kanban board",
+    "leads": "Lead center",
+    "calendar": "Calendar",
+    "messengers": "Messengers",
+    "sms": "SMS campaigns"
+  },
+
+  "accounting": {
+    "title": "Accounting",
+    "kassa": "Payment documents",
+    "cash": "Cash on hand",
+    "account_statement": "Account statement",
+    "debt": "Settlements",
+    "price": "Price list",
+    "currency": "Exchange rates"
+  },
+
+  "sales": {
+    "title": "Sales",
+    "add": "Goods sales",
+    "list": "Sales register",
+    "mobile": "Mobile sales",
+    "pos": "Sales window (POS)",
+    "returns": "Returns"
+  },
+
+  "purchase": {
+    "title": "Purchases",
+    "add": "Goods purchasing",
+    "list": "Purchase register",
+    "returns": "Returns"
+  },
+
+  "warehouse": {
+    "title": "Warehouse",
+    "stock_balance": "Stock balances",
+    "inventory": "Inventory",
+    "transfers": "Transfers",
+    "write_off": "Write-offs",
+    "print": "Price tag printing"
+  },
+
+  "catalog": {
+    "title": "Directories",
+    "counterparties": "Counterparties",
+    "products": "Products",
+    "departments": "Departments",
+    "articles": "Articles"
+  },
+
+  "hr": {
+    "title": "HR & Payroll",
+    "employees": "Employees",
+    "salary_calc": "Payroll calculation",
+    "salary_pay": "Salary payment",
+    "debt": "Employee settlements",
+    "position": "Hiring / transfer"
+  },
+
+  "report": {
+    "title": "Reports",
+    "sales": "Sales report",
+    "purchase": "Purchase report",
+    "goods": "Goods report",
+    "finance": "Financial report",
+    "kassa": "Cash report",
+    "employee": "Employee report"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "account": "Personal account",
+    "general": "General settings",
+    "filials": "Offices and branches",
+    "users": "Users",
+    "plans": "Sales plan",
+    "currency": "Currencies",
+    "accounts": "Accounts",
+    "warehouses": "Warehouses",
+    "begin_balance": "Opening balances",
+    "documents": "Documents"
+  },
+
+  "support": {
+    "title": "Support",
+    "guide": "Step-by-step guide",
+    "soft": "Software",
+    "faq": "FAQ",
+    "video": "Video tutorials"
+  },
+
+  "product_tabs": {
+    "products": "Products",
+    "category": "Category",
+    "unit": "Unit",
+    "brand": "Brands"
+  }
+}

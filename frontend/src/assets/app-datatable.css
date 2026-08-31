@@ -1,0 +1,321 @@
+.p-datatable-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+    background: var(--surface-ground);
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 13px;
+    height: 34px;
+    padding: 0 10px;
+    border-right: 1px solid var(--surface-border);
+    border-bottom: 1px solid var(--surface-border);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.p-datatable .p-datatable-tbody>tr {
+    height: 24px;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+    background: var(--surface-card);
+}
+
+.p-datatable .p-datatable-tbody>tr:nth-child(even) {
+    background: color-mix(in srgb, var(--surface-card) 94%, var(--text-color) 6%);
+}
+
+.p-datatable .p-datatable-tbody>tr:hover {
+    background: var(--surface-hover);
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+    height: 24px;
+    padding: 0 10px;
+    font-size: 13px;
+    color: var(--text-color);
+    border: 1px solid var(--surface-border);
+
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.p-datatable .p-column-header-content {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+}
+
+.p-datatable .p-column-title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.p-datatable .p-selection-column {
+    width: 36px;
+    padding: 0;
+    text-align: center;
+}
+
+.p-datatable .p-checkbox {
+    margin: 0;
+    vertical-align: middle;
+}
+
+.p-datatable .p-checkbox-box {
+    width: 14px;
+    height: 14px;
+}
+
+.p-datatable .p-checkbox-icon {
+    font-size: 10px;
+}
+
+.p-datatable .p-button {
+    height: 18px !important;
+    min-height: 18px !important;
+    padding: 0 5px !important;
+}
+
+.p-datatable .p-button .pi {
+    font-size: 13px;
+}
+
+.p-datatable .p-datatable-emptymessage {
+    color: var(--text-color-secondary);
+    font-size: 13px;
+}
+
+.isp-icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--surface-border);
+    color: #9ca3af;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px 0 2px;
+    padding: 4px;
+    transition: all .15s ease;
+}
+
+.isp-icon-btn.danger {
+    border-color: #ef4444;
+    color: #f89a9a;
+    box-shadow: 0 0 0 1px rgba(239, 68, 68, .35);
+}
+
+.p-datatable .p-paginator {
+    margin-top: auto;
+    border: 1px solid var(--surface-border);
+}
+
+
+
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+}
+
+.p-datatable .p-datatable-tbody>tr[data-p-selected="true"] {
+    background: rgba(114, 157, 226, 0.815) !important;
+    box-shadow: inset 3px 0 0 #739cdd;
+}
+
+.p-datatable .p-datatable-tbody>tr[data-p-selected="true"]:hover {
+    background: rgba(114, 157, 226, 0.815) !important;
+}
+
+.p-datatable .p-datatable-tbody>tr[data-p-selected="true"]>td {
+    background: transparent !important;
+}
+
+.p-datatable .p-datatable-tbody>tr[data-p-selected="true"]>td.p-frozen-column {
+    background: rgba(114, 157, 226, 0.815) !important;
+}
+
+.p-paginator .p-paginator-jump-to-page-input .p-inputnumber-input {
+    width: 52px !important;
+    min-width: 52px !important;
+    height: 26px;
+    padding: 0 6px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.p-paginator {
+    --p-paginator-jump-to-page-input-max-width: 60px;
+    --p-paginator-jump-to-page-input-min-width: 48px;
+}
+
+.p-datatable.p-datatable-gridlines .p-datatable-thead>tr>th {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.col-title {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.p-datatable th,
+.p-datatable td {
+    min-width: 60px !important;
+}
+
+.p-datatable-column-resizer {
+    background: transparent !important;
+}
+
+.image-cell {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f6f6f6;
+    border: 1px solid var(--surface-border);
+}
+
+.image-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.p-datatable {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border);
+}
+
+.isp-paginator {
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.base-table {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.table-wrapper {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.p-datatable-wrapper {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+}
+
+.isp-paginator {
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.base-table {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: auto;
+}
+
+.universal-page-card {
+    display: flex;
+    flex-direction: column;
+    height: calc(100dvh - 4.2rem);
+    min-height: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.universal-page-card .p-toolbar-start {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.universal-page-card .p-toolbar-start .p-button {
+    height: 36px;
+    margin-right: 0 !important;
+    border-radius: 8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.universal-page-card .p-toolbar-start .p-button:first-child {
+    padding-inline: 1rem;
+    box-shadow: 0 3px 8px rgba(34, 197, 94, 0.22);
+}
+
+.universal-page-card .p-toolbar-start .p-button:last-child {
+    width: 36px;
+    padding: 0;
+}
+
+.universal-page-card .p-toolbar-start .p-button:not(:disabled):hover {
+    transform: translateY(-1px);
+}
+
+.universal-page-card .p-toolbar-start .p-button:last-child:disabled {
+    background: var(--surface-100);
+    border-color: var(--surface-300);
+    color: var(--text-color-secondary);
+    opacity: 0.55;
+}
+
+.reference-dialog-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+
+.base-table .p-datatable-table {
+    min-width: 700px;
+}
+
+.base-table .p-datatable-table-container,
+.base-table .p-datatable-wrapper {
+    overflow: auto !important;
+}
+
+
+
+
+
+
+

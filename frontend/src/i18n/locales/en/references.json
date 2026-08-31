@@ -1,0 +1,30 @@
+{
+    "model": {
+        "table": {
+            "company": "Company",
+            "filial": "Branch",
+            "category": "Category",
+            "parent_category": "Parent Category",
+            "unit": "Unit of Measurement",
+            "short_name": "Short Name",
+            "brand": "Brand",
+            "group": "Group",
+            "region": "Region",
+            "specialty": "Specialty",
+            "institution": "Educational Institution",
+            "role": "Role",
+
+            "id": "ID",
+            "name": "Name",
+            "code": "Code",
+            "address": "Address",
+            "description": "Description",
+            "status": "Status"
+        },
+
+        "dialog": {
+            "title_reference": "Add and Edit",
+            "title_confirm": "Confirmation"
+        }
+    }
+}

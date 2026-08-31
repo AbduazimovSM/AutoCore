@@ -1,0 +1,84 @@
+{
+    "counterparties": {
+        "title": "Counterparties",
+
+        "table": {
+            "id": "ID",
+            "name": "Name",
+            "group": "Group",
+            "region": "Region",
+            "phone": "Phone",
+            "birth_date": "Date of birth",
+            "address": "Address",
+            "gender": "Gender",
+            "currency": "Currency",
+            "description": "Description",
+            "status": "Status",
+            "active": "Active"
+        },
+
+        "dialog": {
+            "title_counterparty": "Add / edit counterparty",
+            "title_confirm": "Confirmation"
+        },
+
+        "currency": {
+            "tjs": "Tajikistani somoni",
+            "usd": "US dollar",
+            "eur": "Euro",
+            "rub": "Russian ruble"
+        },
+
+        "gender": {
+            "unknown": "Unknown",
+            "male": "Male",
+            "female": "Female"
+        }
+    },
+
+    "products": {
+        "title": "Products",
+
+        "table": {
+            "id": "ID",
+            "name": "Name",
+            "barcode": "Barcode",
+            "sku": "SKU",
+            "type": "Type",
+            "category": "Category",
+            "brand": "Brand",
+            "unit": "Unit",
+            "min_quantity": "Minimum quantity",
+            "package": "Package",
+            "term": "Expiration date",
+            "whole": "Wholesale",
+            "image": "Image",
+            "status": "Status",
+            "view": "Views",
+            "description": "Description"
+        },
+
+        "dialog": {
+            "title_product": "Add and edit product"
+        },
+
+        "types": {
+            "product": "Product",
+            "service": "Service"
+        },
+
+        "retail": "Retail",
+        "wholesale": "Wholesale"
+    },
+
+    "errors": {
+        "loadFailed": "Failed to load data",
+        "saveFailed": "Failed to save data",
+        "deleteFailed": "Failed to delete product",
+        "deleteSelectedFailed": "Failed to delete selected products"
+    },
+    "success": {
+        "save": "Data saved successfully",
+        "deleteSelected": "Delete {count} selected products?"
+    }
+}
