@@ -13,7 +13,6 @@
             "specialty": "Specialty",
             "institution": "Educational Institution",
             "role": "Role",
-
             "id": "ID",
             "name": "Name",
             "code": "Code",
@@ -21,10 +20,14 @@
             "description": "Description",
             "status": "Status"
         },
-
         "dialog": {
             "title_reference": "Add and Edit",
             "title_confirm": "Confirmation"
+        },
+        "settings": {
+            "title": "Table settings",
+            "column_name": "Column name",
+            "visibility": "Visibility"
         }
     }
 }

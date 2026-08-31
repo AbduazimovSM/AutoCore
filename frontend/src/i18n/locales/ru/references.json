@@ -13,7 +13,6 @@
       "specialty": "Специальность",
       "institution": "Учебное заведение",
       "role": "Роль",
-
       "id": "ID",
       "name": "Название",
       "code": "Код",
@@ -21,11 +20,14 @@
       "description": "Описание",
       "status": "Статус"
     },
-
     "dialog": {
       "title_reference": "Добавление и редактирование",
       "title_confirm": "Подтверждение"
+    },
+    "settings": {
+      "title": "Настройки таблицы",
+      "column_name": "Имя столбца",
+      "visibility": "Видимость"
     }
-
   }
 }
