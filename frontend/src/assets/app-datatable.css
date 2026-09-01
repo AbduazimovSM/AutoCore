@@ -214,7 +214,22 @@
     border-radius: 3px;
     flex-shrink: 0;
 }
+.product-image-preview {
+    width: 100%;
+    height: 500px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.product-image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
 .p-datatable {
     display: flex;

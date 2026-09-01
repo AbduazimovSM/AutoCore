@@ -142,9 +142,22 @@
             <DeleteProductsDialog v-model="deleteProductsDialog" :count="selectedProducts.length"
                 :loading="loadingDeleteProducts" @confirm="destroyProducts" />
 
-            <Dialog v-model:visible="imageDialog" :header="selectedImageName" modal dismissableMask
-                :style="{ width: 'auto' }">
-                <img :src="selectedImage" class="product-preview-image" />
+            <Dialog
+                v-model:visible="imageDialog"
+                :header="selectedImageName"
+                modal
+                dismissableMask
+                maximizable
+                :style="{ width: '600px' }"
+                :breakpoints="{ '768px': '95vw' }"
+                class="product-image-dialog"
+            >
+                <div class="product-image-preview">
+                    <img
+                        :src="selectedImage"
+                        :alt="selectedImageName"
+                    />
+                </div>
             </Dialog>
         </div>
     </div>

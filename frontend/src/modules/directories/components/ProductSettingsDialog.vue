@@ -1,6 +1,6 @@
 <template>
     <Dialog v-model:visible="visible" :header="t('global.settings.title')" :style="{ width: '650px' }"
-        :breakpoints="{ '960px': '95vw' }" modal class="product-settings-dialog">
+        :breakpoints="{ '960px': '95vw' }" modal dismissableMask  class="product-settings-dialog">
         <div class="settings-table">
             <!-- Заголовок -->
             <div class="settings-head">
