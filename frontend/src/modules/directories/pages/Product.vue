@@ -48,8 +48,7 @@
                     <template #body="{ data }">
                         <div class="product-name-cell">
                             <img v-if="productSettings.fields.image" :src="`${imageUrl}/images/products/${data.image}`"
-                                class="product-name-image" />
-
+                                class="product-name-image" @click="openImage(data)" />
                             <span>{{ data.name }}</span>
                         </div>
                     </template>
@@ -142,6 +141,11 @@
                 :loading="loadingDeleteProduct" @confirm="destroyProduct" />
             <DeleteProductsDialog v-model="deleteProductsDialog" :count="selectedProducts.length"
                 :loading="loadingDeleteProducts" @confirm="destroyProducts" />
+
+            <Dialog v-model:visible="imageDialog" :header="selectedImageName" modal dismissableMask
+                :style="{ width: 'auto' }">
+                <img :src="selectedImage" class="product-preview-image" />
+            </Dialog>
         </div>
     </div>
 </template>
@@ -194,7 +198,15 @@ function resetSettings() {
         ...productSettings.getDefaults()
     };
 }
+const imageDialog = ref(false);
+const selectedImage = ref(null);
+const selectedImageName = ref('');
 
+function openImage(product) {
+    selectedImage.value = `${imageUrl}/images/products/${product.image}`;
+    selectedImageName.value = product.name;
+    imageDialog.value = true;
+}
 const actionItems = computed(() => [
     {
         label: t('global.buttons.update'),
