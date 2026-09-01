@@ -7,8 +7,8 @@
                 <Button :label="t('global.buttons.add')" icon="pi pi-plus" class="mr-2"
                     @click="dialogStore.openNew()" />
 
-                <Button icon="pi pi-trash" :disabled="!selectedProducts.length" severity="danger" v-tooltip.top="t('global.buttons.delete')"
-                    @click="confirmDeleteProducts">
+                <Button icon="pi pi-trash" :disabled="!selectedProducts.length" severity="danger"
+                    v-tooltip.top="t('global.buttons.delete')" @click="confirmDeleteProducts">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-trash" viewBox="0 0 16 16">
                         <path
@@ -44,7 +44,16 @@
                 <Column selection-mode="multiple" style="width: 3rem" :exportable="false" />
 
                 <Column v-if="productSettings.fields.name" field="name" :header="t('directories.products.table.name')"
-                    sortable />
+                    sortable>
+                    <template #body="{ data }">
+                        <div class="product-name-cell">
+                            <img v-if="productSettings.fields.image" :src="`${imageUrl}/images/products/${data.image}`"
+                                class="product-name-image" />
+
+                            <span>{{ data.name }}</span>
+                        </div>
+                    </template>
+                </Column>
 
                 <Column v-if="productSettings.fields.barcode" field="barcode"
                     :header="t('directories.products.table.barcode')" sortable />
@@ -52,30 +61,24 @@
                 <Column v-if="productSettings.fields.sku" field="sku" :header="t('directories.products.table.sku')"
                     sortable />
 
-                <Column v-if="productSettings.fields.category" field="category" :header="t('directories.products.table.category')" sortable>
+                <Column v-if="productSettings.fields.category" field="category"
+                    :header="t('directories.products.table.category')" sortable>
                     <template #body="{ data }">
                         {{ data.category?.name || '' }}
                     </template>
                 </Column>
 
-                <Column v-if="productSettings.fields.unit" field="unit" :header="t('directories.products.table.unit')" sortable>
+                <Column v-if="productSettings.fields.unit" field="unit" :header="t('directories.products.table.unit')"
+                    sortable>
                     <template #body="{ data }">
                         {{ data.unit?.name || '' }}
                     </template>
                 </Column>
 
-                <Column v-if="productSettings.fields.brand" field="brand" :header="t('directories.products.table.brand')" sortable>
+                <Column v-if="productSettings.fields.brand" field="brand"
+                    :header="t('directories.products.table.brand')" sortable>
                     <template #body="{ data }">
                         {{ data.brand?.name || '' }}
-                    </template>
-                </Column>
-
-                <Column v-if="productSettings.fields.image" field="image"
-                    :header="t('directories.products.table.image')">
-                    <template #body="{ data }">
-                        <div class="image-cell">
-                            <img :src="`${imageUrl}/images/products/${data.image}`" />
-                        </div>
                     </template>
                 </Column>
 
@@ -83,7 +86,7 @@
                     :header="t('directories.products.table.min_quantity')" sortable />
 
                 <Column v-if="productSettings.fields.description" field="description"
-                    :header="t('directories.products.table.description')" sortable/>
+                    :header="t('directories.products.table.description')" sortable />
 
                 <Column v-if="productSettings.fields.status" field="status"
                     :header="t('directories.products.table.status')" sortable>
@@ -125,8 +128,10 @@
                 </template>
 
                 <template #end>
-                    <Button type="button" icon="pi pi-refresh" text @click="loadProducts" v-tooltip.top="t('global.buttons.refresh')"/>
-                    <Button icon="pi pi-sync"  text @click="resetSettings" v-tooltip.top="t('global.settings.reset_settings')" />
+                    <Button type="button" icon="pi pi-refresh" text @click="loadProducts"
+                        v-tooltip.top="t('global.buttons.refresh')" />
+                    <Button icon="pi pi-sync" text @click="resetSettings"
+                        v-tooltip.top="t('global.settings.reset_settings')" />
                     <Button type="button" icon="pi pi-download" text />
                 </template>
             </Paginator>
