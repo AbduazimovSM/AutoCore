@@ -1,5 +1,5 @@
 <template>
-    <div class="card universal-page-card">
+    <div class="card1 universal-page-card">
         <ProductMenu class="mb-8" />
 
         <Toolbar style="border-radius: 0">

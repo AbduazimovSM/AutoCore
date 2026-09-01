@@ -1,5 +1,5 @@
 <template>
-    <div class="card universal-page-card">
+    <div class="card1 universal-page-card">
         <ProductMenu class="mb-8" />
 
         <Toolbar style="border-radius: 0">
@@ -48,12 +48,23 @@
 
                 <Column selection-mode="multiple" style="width: 3rem" :exportable="false" />
 
-                <Column v-if="currentSettings.name" field="name" :header="t('references.model.table.name')" sortable />
+                <Column
+    v-if="currentSettings.name"
+    field="name"
+    :header="t('references.model.table.name')"
+    sortable
+>
+    <template #body="{ data }">
+        <span
+            class="reference-name-link"
+            @click="dialogStore.openEdit(data, type)"
+        >
+            {{ data.name }}
+        </span>
+    </template>
+</Column>
 
-                <Column v-if="
-                    type === 'category' &&
-                    currentSettings.parent_category
-                " field="parent_id" :header="t('references.model.table.parent_category')" sortable>
+                <Column v-if="type === 'category' && currentSettings.parent_category" field="parent_id" :header="t('references.model.table.parent_category')" sortable>
                     <template #body="{ data }">
                         {{ getParentCategoryName(data.parent_id) }}
                     </template>

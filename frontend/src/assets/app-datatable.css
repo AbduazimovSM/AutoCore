@@ -353,3 +353,13 @@
 .base-table .p-datatable-wrapper {
     overflow: auto !important;
 }
+
+.reference-name-link {
+    color: #3b82f6;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.reference-name-link:hover {
+    text-decoration: underline;
+}
