@@ -257,6 +257,45 @@ async function loadBrands(search = '') {
     return response.data.data.data;
 }
 
+
+watch(
+    () => referenceDialogStore.changed,
+    async (changed) => {
+        if (!changed) {
+            return;
+        }
+
+        const type = referenceDialogStore.type;
+        const savedItem = referenceDialogStore.savedReference;
+
+        if (type === 'category') {
+            await categorySelect.value?.reload();
+
+            if (savedItem?.id) {
+                product.value.category_id = savedItem.id;
+            }
+        }
+
+        if (type === 'unit') {
+            await unitSelect.value?.reload();
+
+            if (savedItem?.id) {
+                product.value.unit_id = savedItem.id;
+            }
+        }
+
+        if (type === 'brand') {
+            await brandSelect.value?.reload();
+
+            if (savedItem?.id) {
+                product.value.brand_id = savedItem.id;
+            }
+        }
+
+        referenceDialogStore.resetChanged();
+    }
+);
+
 watch(
     () => dialogStore.visible,
     (visible) => {

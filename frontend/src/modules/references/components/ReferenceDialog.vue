@@ -267,11 +267,15 @@ async function saveReference() {
     saving.value = true;
 
     try {
+        let savedItem = null;
+
         if (reference.value.id) {
-            await updateReference(
+            const response = await updateReference(
                 reference.value.id,
                 reference.value
             );
+
+            savedItem = response.data.data;
 
             toast.add({
                 severity: 'success',
@@ -281,9 +285,11 @@ async function saveReference() {
             });
 
         } else {
-            await createReference(
+            const response = await createReference(
                 reference.value
             );
+
+            savedItem = response.data.data;
 
             toast.add({
                 severity: 'success',
@@ -293,7 +299,7 @@ async function saveReference() {
             });
         }
 
-        dialogStore.saved();
+        dialogStore.saved(savedItem);
 
     } catch (error) {
         console.error(
