@@ -9,74 +9,113 @@ use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
-    public function index(Request $request)
-    {
-        $query = Product::with(['category', 'unit', 'brand']);
+public function index(Request $request)
+{
+    $query = Product::with(['category', 'unit', 'brand']);
 
-        if ($request->filled('search')) {
-            $search = trim($request->query('search'));
+    if ($request->filled('search')) {
+        $search = trim($request->query('search'));
 
-            $query->where(function ($q) use ($search) {
-                $q->orWhere('id', 'like', "%{$search}%")
-                    ->orWhere('name', 'like', "%{$search}%")
-                    ->orWhere('barcode', 'like', "%{$search}%")
-                    ->orWhere('sku', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%")
+        $query->where(function ($q) use ($search) {
+            $q->orWhere('id', 'like', "%{$search}%")
+                ->orWhere('name', 'like', "%{$search}%")
+                ->orWhere('barcode', 'like', "%{$search}%")
+                ->orWhere('sku', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%")
 
-                    ->orWhereHas('category', function ($categoryQuery) use ($search) {
-                        $categoryQuery->where('name', 'like', "%{$search}%");
-                    })
+                ->orWhereHas('category', function ($categoryQuery) use ($search) {
+                    $categoryQuery->where('name', 'like', "%{$search}%");
+                })
 
-                    ->orWhereHas('unit', function ($unitQuery) use ($search) {
-                        $unitQuery->where('name', 'like', "%{$search}%");
-                    })
+                ->orWhereHas('unit', function ($unitQuery) use ($search) {
+                    $unitQuery->where('name', 'like', "%{$search}%");
+                })
 
-                    ->orWhereHas('brand', function ($brandQuery) use ($search) {
-                        $brandQuery->where('name', 'like', "%{$search}%");
-                    });
-            });
-        }
+                ->orWhereHas('brand', function ($brandQuery) use ($search) {
+                    $brandQuery->where('name', 'like', "%{$search}%");
+                });
+        });
+    }
 
-        $perPage = $request->integer('per_page', 10);
-        $perPage = min(max($perPage, 1), 100);
+    $perPage = $request->integer('per_page', 10);
+    $perPage = min(max($perPage, 1), 100);
 
-        $allowedSortFields = [
-            'id',
-            'name',
-            'barcode',
-            'sku',
-            'category_id',
-            'unit_id',
-            'brand_id',
-            'min_quantity',
-            'description',
-            'status'
-        ];
+    $allowedSortFields = [
+        'id',
+        'name',
+        'barcode',
+        'sku',
+        'category',
+        'unit',
+        'brand',
+        'min_quantity',
+        'description',
+        'status'
+    ];
 
-        $sortField = $request->query('sort_field', 'id');
+    $sortField = $request->query('sort_field', 'id');
 
-        if (!in_array($sortField, $allowedSortFields, true)) {
-            $sortField = 'id';
-        }
+    if (!in_array($sortField, $allowedSortFields, true)) {
+        $sortField = 'id';
+    }
 
-        $sortOrder = strtolower(
-            $request->query('sort_order', 'asc')
+    $sortOrder = strtolower(
+        $request->query('sort_order', 'asc')
+    );
+
+    if (!in_array($sortOrder, ['asc', 'desc'], true)) {
+        $sortOrder = 'asc';
+    }
+
+    if ($sortField === 'category') {
+
+        $query->orderBy(
+            \App\Models\Reference::select('name')
+                ->whereColumn(
+                    'references.id',
+                    'products.category_id'
+                ),
+            $sortOrder
         );
 
-        if (!in_array($sortOrder, ['asc', 'desc'], true)) {
-            $sortOrder = 'asc';
-        }
+    } elseif ($sortField === 'unit') {
 
-        $products = $query
-            ->orderBy($sortField, $sortOrder)
-            ->paginate($perPage);
+        $query->orderBy(
+            \App\Models\Reference::select('name')
+                ->whereColumn(
+                    'references.id',
+                    'products.unit_id'
+                ),
+            $sortOrder
+        );
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Успешно получили данные!',
-            'data' => $products,
-        ], 200);
+    } elseif ($sortField === 'brand') {
+
+        $query->orderBy(
+            \App\Models\Reference::select('name')
+                ->whereColumn(
+                    'references.id',
+                    'products.brand_id'
+                ),
+            $sortOrder
+        );
+
+    } else {
+
+        $query->orderBy(
+            $sortField,
+            $sortOrder
+        );
     }
+
+    $products = $query->paginate($perPage);
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Успешно получили данные!',
+        'data' => $products,
+    ], 200);
+}
 
     public function store(Request $request)
     {

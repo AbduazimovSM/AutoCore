@@ -52,19 +52,19 @@
                 <Column v-if="productSettings.fields.sku" field="sku" :header="t('directories.products.table.sku')"
                     sortable />
 
-                <Column v-if="productSettings.fields.category" :header="t('directories.products.table.category')">
+                <Column v-if="productSettings.fields.category" field="category" :header="t('directories.products.table.category')" sortable>
                     <template #body="{ data }">
                         {{ data.category?.name || '' }}
                     </template>
                 </Column>
 
-                <Column v-if="productSettings.fields.unit" :header="t('directories.products.table.unit')">
+                <Column v-if="productSettings.fields.unit" field="unit" :header="t('directories.products.table.unit')" sortable>
                     <template #body="{ data }">
                         {{ data.unit?.name || '' }}
                     </template>
                 </Column>
 
-                <Column v-if="productSettings.fields.brand" :header="t('directories.products.table.brand')">
+                <Column v-if="productSettings.fields.brand" field="brand" :header="t('directories.products.table.brand')" sortable>
                     <template #body="{ data }">
                         {{ data.brand?.name || '' }}
                     </template>
@@ -83,7 +83,7 @@
                     :header="t('directories.products.table.min_quantity')" sortable />
 
                 <Column v-if="productSettings.fields.description" field="description"
-                    :header="t('directories.products.table.description')" />
+                    :header="t('directories.products.table.description')" sortable/>
 
                 <Column v-if="productSettings.fields.status" field="status"
                     :header="t('directories.products.table.status')" sortable>
