@@ -4,192 +4,109 @@
 
         <Toolbar style="border-radius: 0">
             <template #start>
-                <Button
-                    :label="t('global.buttons.add')"
-                    icon="pi pi-plus"
-                    class="mr-2"
-                    @click="dialogStore.openNew(type)"
-                />
+                <Button :label="t('global.buttons.add')" icon="pi pi-plus" class="mr-2"
+                    @click="dialogStore.openNew(type)" />
 
-                <Button
-                    icon="pi pi-trash"
-                    severity="danger"
-                    :disabled="!selectedReferences.length"
-                    @click="confirmDeleteReferences"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-trash"
-                        viewBox="0 0 16 16"
-                    >
+                <Button icon="pi pi-trash" severity="danger" :disabled="!selectedReferences.length"
+                    @click="confirmDeleteReferences">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-trash" viewBox="0 0 16 16">
                         <path
-                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"
-                        />
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                         <path
-                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"
-                        />
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                     </svg>
                 </Button>
             </template>
 
             <template #end>
-                <IconField iconPosition="left">
-                    <InputIcon>
-                        <i class="pi pi-search" />
-                    </InputIcon>
+                <div class="flex gap-2">
+                    <IconField iconPosition="left">
+                        <InputIcon>
+                            <i class="pi pi-search" />
+                        </InputIcon>
 
-                    <InputText
-                        v-model="search"
-                        :placeholder="t('global.buttons.search')"
-                        @input="onSearch"
-                    />
-                </IconField>
+                        <InputText v-model="search" :placeholder="t('global.buttons.search')" @input="onSearch" />
+                    </IconField>
+
+                    <Button v-if="search" icon="pi pi-times" severity="secondary" outlined @click="clearSearch"
+                        v-tooltip.top="t('global.buttons.clear')" />
+                </div>
             </template>
         </Toolbar>
 
         <div class="table-wrapper">
-            <DataTable
-                class="base-table"
-                v-model:selection="selectedReferences"
-                :value="references"
-                :loading="loading"
-                showGridlines
-                data-key="id"
-                resizableColumns
-                columnResizeMode="fit"
-                scrollable
-                scrollHeight="flex"
-                :tableStyle="{ minWidth: '760px' }"
-                lazy
-                :sortField="sortField"
-                :sortOrder="sortOrder === 'asc' ? 1 : -1"
-                @sort="onSort"
-            >
+            <DataTable class="base-table" v-model:selection="selectedReferences" :value="references" :loading="loading"
+                showGridlines data-key="id" resizableColumns columnResizeMode="fit" scrollable scrollHeight="flex"
+                :tableStyle="{ minWidth: '760px' }" lazy :sortField="sortField"
+                :sortOrder="sortOrder === 'asc' ? 1 : -1" @sort="onSort">
                 <template #empty>
                     <p class="text-center">
                         {{ t('global.messages.no_data') }}
                     </p>
                 </template>
 
-                <Column
-                    selection-mode="multiple"
-                    style="width: 3rem"
-                    :exportable="false"
-                />
+                <Column selection-mode="multiple" style="width: 3rem" :exportable="false" />
 
-                <Column
-                    v-if="currentSettings.name"
-                    field="name"
-                    :header="t('references.model.table.name')"
-                    sortable
-                />
+                <Column v-if="currentSettings.name" field="name" :header="t('references.model.table.name')" sortable />
 
-                <Column
-                    v-if="
-                        type === 'category' &&
-                        currentSettings.parent_category
-                    "
-                    field="parent_id"
-                    :header="t('references.model.table.parent_category')"
-                    sortable
-                >
+                <Column v-if="
+                    type === 'category' &&
+                    currentSettings.parent_category
+                " field="parent_id" :header="t('references.model.table.parent_category')" sortable>
                     <template #body="{ data }">
                         {{ getParentCategoryName(data.parent_id) }}
                     </template>
                 </Column>
 
-                <Column
-                    v-if="
-                        type === 'unit' &&
-                        currentSettings.short_name
-                    "
-                    field="short_name"
-                    :header="t('references.model.table.short_name')"
-                    sortable
-                >
+                <Column v-if="
+                    type === 'unit' &&
+                    currentSettings.short_name
+                " field="short_name" :header="t('references.model.table.short_name')" sortable>
                     <template #body="{ data }">
                         {{ data.short_name || '' }}
                     </template>
                 </Column>
 
-                <Column
-                    v-if="currentSettings.description"
-                    field="description"
-                    :header="t('references.model.table.description')"
-                    sortable
-                >
+                <Column v-if="currentSettings.description" field="description"
+                    :header="t('references.model.table.description')" sortable>
                     <template #body="{ data }">
                         {{ data.description || '' }}
                     </template>
                 </Column>
 
-                <Column
-                    v-if="currentSettings.status"
-                    field="status"
-                    :header="t('references.model.table.status')"
-                    sortable
-                >
+                <Column v-if="currentSettings.status" field="status" :header="t('references.model.table.status')"
+                    sortable>
                     <template #body="{ data }">
-                        <Tag
-                            :value="
-                                data.status
-                                    ? t('global.status.active')
-                                    : t('global.status.inactive')
-                            "
-                            :severity="
-                                data.status
-                                    ? 'success'
-                                    : 'danger'
-                            "
-                        />
+                        <Tag :value="data.status
+                            ? t('global.status.active')
+                            : t('global.status.inactive')
+                            " :severity="data.status
+                                ? 'success'
+                                : 'danger'
+                                " />
                     </template>
                 </Column>
 
-                <Column
-                    style="width: 4.1rem"
-                    :exportable="false"
-                >
+                <Column style="width: 4.1rem" :exportable="false">
                     <template #header>
-                        <Button
-                            icon="pi pi-cog"
-                            rounded
-                            text
-                            severity="secondary"
-                            @click="referenceSettingsDialog = true"
-                        />
+                        <Button icon="pi pi-cog" rounded text severity="secondary"
+                            @click="referenceSettingsDialog = true" />
                     </template>
 
                     <template #body="{ data }">
-                        <Button
-                            icon="pi pi-ellipsis-h"
-                            rounded
-                            text
-                            severity="secondary"
-                            @click="openActionsMenu($event, data)"
-                        />
+                        <Button icon="pi pi-ellipsis-h" rounded text severity="secondary"
+                            @click="openActionsMenu($event, data)" />
                     </template>
                 </Column>
 
-                <Menu
-                    ref="actionsMenu"
-                    :model="actionItems"
-                    :popup="true"
-                />
+                <Menu ref="actionsMenu" :model="actionItems" :popup="true" />
             </DataTable>
 
-            <Paginator
-                class="isp-paginator"
-                style="border: 1px solid var(--surface-border)"
-                :rows="rows"
-                :first="first"
-                :totalRecords="total"
-                :rowsPerPageOptions="[5, 10, 25, 50, 100]"
+            <Paginator class="isp-paginator" style="border: 1px solid var(--surface-border)" :rows="rows" :first="first"
+                :totalRecords="total" :rowsPerPageOptions="[5, 10, 25, 50, 100]"
                 template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown JumpToPageInput"
-                @page="onPage"
-            >
+                @page="onPage">
                 <template #start>
                     <span v-if="total === 0">
                         {{ t('global.pagination.empty') }}
@@ -207,42 +124,22 @@
                 </template>
 
                 <template #end>
-                    <Button
-                        type="button"
-                        icon="pi pi-refresh"
-                        @click="loadReferences"
-                        text
-                    />
+                    <Button type="button" icon="pi pi-refresh" @click="loadReferences" text />
 
-                    <Button
-                        type="button"
-                        icon="pi pi-download"
-                        text
-                    />
+                    <Button type="button" icon="pi pi-download" text />
                 </template>
             </Paginator>
         </div>
 
         <ReferenceDialog />
 
-        <ReferenceSettingsDialog
-            v-model="referenceSettingsDialog"
-            :type="type"
-        />
+        <ReferenceSettingsDialog v-model="referenceSettingsDialog" :type="type" />
 
-        <DeleteReferenceDialog
-            v-model="deleteReferenceDialog"
-            :item-name="reference?.name"
-            :loading="loadingDeleteReference"
-            @confirm="destroyReference"
-        />
+        <DeleteReferenceDialog v-model="deleteReferenceDialog" :item-name="reference?.name"
+            :loading="loadingDeleteReference" @confirm="destroyReference" />
 
-        <DeleteReferencesDialog
-            v-model="deleteReferencesDialog"
-            :count="selectedReferences.length"
-            :loading="loadingDeleteReferences"
-            @confirm="destroyReferences"
-        />
+        <DeleteReferencesDialog v-model="deleteReferencesDialog" :count="selectedReferences.length"
+            :loading="loadingDeleteReferences" @confirm="destroyReferences" />
     </div>
 </template>
 
@@ -365,6 +262,14 @@ function onSearch() {
     }, 400);
 }
 
+async function clearSearch() {
+    clearTimeout(searchTimer);
+
+    search.value = '';
+    first.value = 0;
+
+    await loadReferences();
+}
 
 async function onPage(event) {
     first.value = event.first;

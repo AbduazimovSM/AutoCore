@@ -214,6 +214,7 @@
     border-radius: 3px;
     flex-shrink: 0;
 }
+
 .product-image-preview {
     width: 100%;
     height: 500px;
@@ -230,6 +231,7 @@
     height: 100%;
     object-fit: contain;
 }
+
 .product-name-link {
     color: #3b82f6;
     cursor: pointer;
@@ -351,10 +353,3 @@
 .base-table .p-datatable-wrapper {
     overflow: auto !important;
 }
-
-
-
-
-
-
-

@@ -20,13 +20,18 @@
             </template>
 
             <template #end>
-                <IconField iconPosition="left">
-                    <InputIcon>
-                        <i class="pi pi-search" />
-                    </InputIcon>
+                <div class="flex gap-2">
+                    <IconField iconPosition="left">
+                        <InputIcon>
+                            <i class="pi pi-search" />
+                        </InputIcon>
 
-                    <InputText v-model="search" :placeholder="t('global.buttons.search')" @input="onSearch" />
-                </IconField>
+                        <InputText v-model="search" :placeholder="t('global.buttons.search')" @input="onSearch" />
+                    </IconField>
+
+                    <Button v-if="search" icon="pi pi-times" severity="secondary" outlined @click="clearSearch"
+                        v-tooltip.top="t('global.buttons.clear')" />
+                </div>
             </template>
         </Toolbar>
 
@@ -202,6 +207,16 @@ function resetSettings() {
         ...productSettings.getDefaults()
     };
 }
+
+async function clearSearch() {
+    clearTimeout(searchTimer);
+
+    search.value = '';
+    first.value = 0;
+
+    await loadProducts();
+}
+
 const imageDialog = ref(false);
 const selectedImage = ref(null);
 const selectedImageName = ref('');

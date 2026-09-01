@@ -1,6 +1,6 @@
 <template>
     <Dialog v-model:visible="visible" :header="t('global.settings.title')" :style="{ width: '650px' }"
-        :breakpoints="{ '960px': '95vw' }" modal dismissableMask  class="product-settings-dialog">
+        :breakpoints="{ '960px': '95vw' }" modal dismissableMask class="product-settings-dialog">
         <div class="settings-table">
             <!-- Заголовок -->
             <div class="settings-head">
@@ -19,15 +19,13 @@
                         </div>
 
                         <div class="settings-switch">
-                            <ToggleSwitch v-model="draft[item.key]" 
-                            :disabled="[
+                            <ToggleSwitch v-model="draft[item.key]" :disabled="[
                                 'name',
                                 'unit',
                                 'category',
                                 'status',
                                 'barcode'
-                            ].includes(item.key)" 
-                            />
+                            ].includes(item.key)" />
                         </div>
                     </template>
 
@@ -41,7 +39,8 @@
 
         <template #footer>
             <div class="dialog-footer">
-                <Button :label="t('global.buttons.cancel')" severity="secondary" outlined class="footer-button" @click="cancel" />
+                <Button :label="t('global.buttons.cancel')" severity="secondary" outlined class="footer-button"
+                    @click="cancel" />
 
                 <Button :label="t('global.buttons.save')" icon="pi pi-check" class="footer-button" @click="save" />
             </div>
