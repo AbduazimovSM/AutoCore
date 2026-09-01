@@ -38,7 +38,13 @@
 
             <div v-if="productSettings.fields.category" class="field">
                 <FloatLabel variant="on">
-                    <AppTreeSelect v-model="product.category_id" :loader="loadCategories" />
+                    <AppTreeSelect
+    ref="categorySelect"
+    v-model="product.category_id"
+    :loader="loadCategories"
+    :show-add="true"
+    @add="openReference('category')"
+/>
 
                     <label>
                         {{ t('directories.products.table.category') }}
@@ -52,7 +58,13 @@
 
             <div v-if="productSettings.fields.unit" class="field">
                 <FloatLabel variant="on">
-                    <AppSelect v-model="product.unit_id" :loader="loadUnits" :show-add="false" />
+                    <AppSelect
+    ref="unitSelect"
+    v-model="product.unit_id"
+    :loader="loadUnits"
+    :show-add="true"
+    @add="openReference('unit')"
+/>
 
                     <label>
                         {{ t('directories.products.table.unit') }}
@@ -66,7 +78,13 @@
 
             <div v-if="productSettings.fields.brand" class="field">
                 <FloatLabel variant="on">
-                    <AppSelect v-model="product.brand_id" :loader="loadBrands" :show-add="false" />
+                    <AppSelect
+    ref="brandSelect"
+    v-model="product.brand_id"
+    :loader="loadBrands"
+    :show-add="true"
+    @add="openReference('brand')"
+/>
 
                     <label>
                         {{ t('directories.products.table.brand') }}
@@ -120,6 +138,7 @@
                 @click="saveProduct" />
         </div>
     </Dialog>
+    <ReferenceDialog />
 </template>
 
 <script setup>
@@ -147,15 +166,27 @@ import {
 import {
     useProductSettingsStore
 } from '@/modules/directories/stores/productSettings.store';
+import ReferenceDialog from '@/modules/references/components/ReferenceDialog.vue';
+
+import {
+    useReferenceDialogStore
+} from '@/modules/references/stores/referenceDialog.store';
 
 const dialogStore = useProductDialogStore();
 const productSettings = useProductSettingsStore();
+const referenceDialogStore = useReferenceDialogStore();
 const toast = useToast();
 
 const product = ref({});
 const submitted = ref(false);
 const saving = ref(false);
 const imageFile = ref(null);
+const categorySelect = ref(null);
+const unitSelect = ref(null);
+const brandSelect = ref(null);
+function openReference(type) {
+    referenceDialogStore.openNew(type);
+}
 
 function onSelect(event) {
     imageFile.value = event.files[0];

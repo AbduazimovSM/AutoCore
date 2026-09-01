@@ -28,6 +28,7 @@ async function bootstrap() {
 
     await Promise.all([
         loadLocale(i18n, locale, 'global'),
+        loadLocale(i18n, locale, 'references'),
         loadLocale(i18n, locale, 'menu'),
     ]);
 
@@ -41,6 +42,7 @@ async function bootstrap() {
 
         const loaders = [
             loadLocale(i18n, newLocale, 'global'),
+            loadLocale(i18n, newLocale, 'references'),
             loadLocale(i18n, newLocale, 'menu')
         ];
 

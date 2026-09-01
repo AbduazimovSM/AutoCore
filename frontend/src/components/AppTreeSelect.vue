@@ -9,7 +9,18 @@
         :placeholder="placeholder"
         class="w-full"
         fluid
-    />
+    >
+        <template #footer v-if="showAdd">
+            <div class="tree-select-footer">
+                <Button
+                    label="Добавить"
+                    icon="pi pi-plus"
+                    class="w-full"
+                    @click="onAdd"
+                />
+            </div>
+        </template>
+    </TreeSelect>
 </template>
 
 <script setup>
@@ -28,11 +39,18 @@ const props = defineProps({
 
     placeholder: {
         type: String,
+        default: ''
+    },
+
+    showAdd: {
+        type: Boolean,
+        default: true
     }
 });
 
 const emit = defineEmits([
-    'update:modelValue'
+    'update:modelValue',
+    'add'
 ]);
 
 const selected = ref(null);
@@ -70,11 +88,14 @@ async function load() {
 
     try {
         const items = await props.loader();
-
         nodes.value = buildTree(items);
     } finally {
         loading.value = false;
     }
+}
+
+function onAdd() {
+    emit('add');
 }
 
 watch(
@@ -118,3 +139,10 @@ defineExpose({
     reload: load
 });
 </script>
+
+<style scoped>
+.tree-select-footer {
+    border-top: 1px solid var(--surface-border);
+    padding: 0.5rem;
+}
+</style>
