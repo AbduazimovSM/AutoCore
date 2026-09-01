@@ -49,7 +49,9 @@
                         <div class="product-name-cell">
                             <img v-if="productSettings.fields.image" :src="`${imageUrl}/images/products/${data.image}`"
                                 class="product-name-image" @click="openImage(data)" />
-                            <span>{{ data.name }}</span>
+                            <span class="product-name-link" @click="dialogStore.openEdit(data)">
+                                {{ data.name }}
+                            </span>
                         </div>
                     </template>
                 </Column>
@@ -142,21 +144,10 @@
             <DeleteProductsDialog v-model="deleteProductsDialog" :count="selectedProducts.length"
                 :loading="loadingDeleteProducts" @confirm="destroyProducts" />
 
-            <Dialog
-                v-model:visible="imageDialog"
-                :header="selectedImageName"
-                modal
-                dismissableMask
-                maximizable
-                :style="{ width: '600px' }"
-                :breakpoints="{ '768px': '95vw' }"
-                class="product-image-dialog"
-            >
+            <Dialog v-model:visible="imageDialog" :header="selectedImageName" modal dismissableMask maximizable
+                :style="{ width: '600px' }" :breakpoints="{ '768px': '95vw' }" class="product-image-dialog">
                 <div class="product-image-preview">
-                    <img
-                        :src="selectedImage"
-                        :alt="selectedImageName"
-                    />
+                    <img :src="selectedImage" :alt="selectedImageName" />
                 </div>
             </Dialog>
         </div>
