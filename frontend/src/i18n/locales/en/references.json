@@ -23,11 +23,6 @@
         "dialog": {
             "title_reference": "Add and Edit",
             "title_confirm": "Confirmation"
-        },
-        "settings": {
-            "title": "Table settings",
-            "column_name": "Column name",
-            "visibility": "Visibility"
         }
     }
 }

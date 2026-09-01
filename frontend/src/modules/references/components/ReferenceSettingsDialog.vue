@@ -1,7 +1,7 @@
 <template>
     <Dialog
         v-model:visible="visible"
-        :header="t('references.model.settings.title')"
+        :header="t('global.settings.title')"
         :style="{ width: '650px' }"
         :breakpoints="{ '960px': '95vw' }"
         modal
@@ -10,10 +10,10 @@
         <div class="settings-table">
 
             <div class="settings-head">
-                <div>{{ t('references.model.settings.column_name') }}</div>
-                <div>{{ t('references.model.settings.visibility') }}</div>
-                <div>{{ t('references.model.settings.column_name') }}</div>
-                <div>{{ t('references.model.settings.visibility') }}</div>
+                <div>{{ t('global.settings.column_name') }}</div>
+                <div>{{ t('global.settings.visibility') }}</div>
+                <div>{{ t('global.settings.column_name') }}</div>
+                <div>{{ t('global.settings.visibility') }}</div>
             </div>
 
             <div

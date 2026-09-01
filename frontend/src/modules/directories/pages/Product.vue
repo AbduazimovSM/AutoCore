@@ -7,7 +7,7 @@
                 <Button :label="t('global.buttons.add')" icon="pi pi-plus" class="mr-2"
                     @click="dialogStore.openNew()" />
 
-                <Button icon="pi pi-trash" :disabled="!selectedProducts.length" severity="danger"
+                <Button icon="pi pi-trash" :disabled="!selectedProducts.length" severity="danger" v-tooltip.top="t('global.buttons.delete')"
                     @click="confirmDeleteProducts">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-trash" viewBox="0 0 16 16">
@@ -125,7 +125,8 @@
                 </template>
 
                 <template #end>
-                    <Button type="button" icon="pi pi-refresh" text @click="loadProducts" />
+                    <Button type="button" icon="pi pi-refresh" text @click="loadProducts" v-tooltip.top="t('global.buttons.refresh')"/>
+                    <Button icon="pi pi-sync"  text @click="resetSettings" v-tooltip.top="t('global.settings.reset_settings')" />
                     <Button type="button" icon="pi pi-download" text />
                 </template>
             </Paginator>
@@ -180,6 +181,14 @@ const total = ref(0);
 const sortField = ref('id');
 const sortOrder = ref('asc');
 const actionsMenu = ref(null);
+
+function resetSettings() {
+    productSettings.reset();
+
+    draft.value = {
+        ...productSettings.getDefaults()
+    };
+}
 
 const actionItems = computed(() => [
     {

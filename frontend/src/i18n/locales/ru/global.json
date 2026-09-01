@@ -61,5 +61,12 @@
     "status": {
         "active": "Активен",
         "inactive": "Неактивен"
+    },
+
+    "settings": {
+      "title": "Параметры",
+      "column_name": "Имя столбца",
+      "visibility": "Видимость",
+      "reset_settings": "Сбросить параметры"
     }
 }

@@ -1,13 +1,13 @@
 <template>
-    <Dialog v-model:visible="visible" :header="t('directories.products.settings.title')" :style="{ width: '650px' }"
+    <Dialog v-model:visible="visible" :header="t('global.settings.title')" :style="{ width: '650px' }"
         :breakpoints="{ '960px': '95vw' }" modal class="product-settings-dialog">
         <div class="settings-table">
             <!-- Заголовок -->
             <div class="settings-head">
-                <div>{{ t('directories.products.settings.column_name') }}</div>
-                <div>{{ t('directories.products.settings.visibility') }}</div>
-                <div>{{ t('directories.products.settings.column_name') }}</div>
-                <div>{{ t('directories.products.settings.visibility') }}</div>
+                <div>{{ t('global.settings.column_name') }}</div>
+                <div>{{ t('global.settings.visibility') }}</div>
+                <div>{{ t('global.settings.column_name') }}</div>
+                <div>{{ t('global.settings.visibility') }}</div>
             </div>
 
             <!-- Поля -->

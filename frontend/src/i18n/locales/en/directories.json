@@ -42,7 +42,7 @@
             "category": "Category",
             "brand": "Brand",
             "unit": "Unit",
-            "min_quantity": "Minimum quantity",
+            "min_quantity": "Min.quantity",
             "package": "Package",
             "term": "Expiration date",
             "whole": "Wholesale",
@@ -53,21 +53,6 @@
         },
         "dialog": {
             "title_product": "Add and edit product"
-        },
-        "settings": {
-            "title": "Table settings",
-            "column_name": "Column name",
-            "visibility": "Visibility"
         }
-    },
-    "errors": {
-        "loadFailed": "Failed to load data",
-        "saveFailed": "Failed to save data",
-        "deleteFailed": "Failed to delete product",
-        "deleteSelectedFailed": "Failed to delete selected products"
-    },
-    "success": {
-        "save": "Data saved successfully",
-        "deleteSelected": "Delete {count} selected products?"
     }
 }

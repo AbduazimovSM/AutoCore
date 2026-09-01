@@ -2,7 +2,6 @@
     "app": {
         "title": "AutoCore | Automation Core"
     },
-
     "buttons": {
         "cancel": "Cancel",
         "save": "Save",
@@ -20,12 +19,10 @@
         "search": "Search…",
         "back": "Back"
     },
-
     "pagination": {
         "report": "Showing {first} to {last} of {totalRecords} records",
         "empty": "No records"
     },
-
     "messages": {
         "confirm_delete": "Are you sure you want to delete the record \"{name}\" ?",
         "confirm_delete_selected": "Are you sure you want to delete the ({count}) selected records ?",
@@ -33,7 +30,6 @@
         "loading": "Loading…",
         "required": "This field is required"
     },
-
     "toast": {
         "success": "Success",
         "error": "Error",
@@ -41,7 +37,6 @@
         "confirmation": "Confirmation",
         "info": "Information"
     },
-
     "success": {
         "created": "Record created successfully",
         "updated": "Record updated successfully",
@@ -49,7 +44,6 @@
         "saved": "Data saved successfully",
         "delete_selected": "Selected records deleted successfully"
     },
-
     "errors": {
         "load_failed": "Failed to load data",
         "save_failed": "Failed to save data",
@@ -57,9 +51,14 @@
         "delete_selected_failed": "Failed to delete the selected records",
         "error": "An error occurred"
     },
-
     "status": {
         "active": "Active",
         "inactive": "Inactive"
+    },
+    "settings": {
+        "title": "Parameters",
+        "column_name": "Column name",
+        "visibility": "Visibility",
+        "reset_settings": "Reset parameters"
     }
 }

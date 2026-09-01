@@ -6,12 +6,12 @@ const STORAGE_KEY = 'productSettings';
 const defaultFields = {
     name: true,
     barcode: true,
-    sku: true,
+    sku: false,
     category: true,
     unit: true,
-    brand: true,
+    brand: false,
     image: true,
-    min_quantity: true,
+    min_quantity: false,
     description: true,
     status: true
 };
