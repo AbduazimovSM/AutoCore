@@ -375,6 +375,40 @@
         width: 100%;
         min-width: 0;
     }
+
+    .isp-paginator {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 0.5rem;
+    }
+
+    .isp-paginator::before {
+        content: '';
+        flex: 0 0 100%;
+        order: 1;
+        height: 0;
+    }
+
+    .isp-paginator .p-paginator-content-start,
+    .isp-paginator .p-paginator-content-end {
+        order: 2;
+        display: flex;
+        align-items: center;
+    }
+
+    .isp-paginator .p-paginator-content-start {
+        flex: 1 1 auto;
+        justify-content: flex-start;
+        min-width: 0;
+        white-space: nowrap;
+    }
+
+    .isp-paginator .p-paginator-content-end {
+        flex: 0 0 auto;
+        justify-content: flex-end;
+        margin-left: auto;
+    }
 }
 
 .reference-dialog-actions {
