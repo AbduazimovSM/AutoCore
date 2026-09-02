@@ -71,6 +71,7 @@
 
                 .layout-sidebar {
                     width: 4.5rem;
+                    overflow: visible;
                     transform: translateX(0);
                     left: 0;
                     transition:
@@ -98,6 +99,7 @@
                     }
 
                     .sidebar-content {
+                        overflow: visible;
                         padding-inline: 0.5rem;
                     }
 
@@ -112,6 +114,40 @@
 
                     .layout-menu ul ul {
                         display: none;
+                    }
+
+                    .layout-menu > .layout-root-menuitem > ul > li {
+                        position: relative;
+                    }
+
+                    .layout-menu > .layout-root-menuitem > ul > li.active-menuitem > .layout-submenu {
+                        display: block !important;
+                        position: absolute;
+                        top: 0;
+                        left: calc(100% + 0.5rem);
+                        z-index: 1002;
+                        min-width: 15rem;
+                        padding: 0.5rem;
+                        overflow: visible;
+                        background: var(--surface-overlay);
+                        border: 1px solid var(--surface-border);
+                        border-radius: var(--content-border-radius);
+                        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+                    }
+
+                    .layout-menu > .layout-root-menuitem > ul > li.active-menuitem > .layout-submenu a {
+                        justify-content: flex-start;
+                        margin-left: 0;
+                        padding: 0.75rem 1rem;
+                        white-space: nowrap;
+                    }
+
+                    .layout-menu > .layout-root-menuitem > ul > li.active-menuitem > .layout-submenu .layout-menuitem-text {
+                        display: inline;
+                    }
+
+                    .layout-menu > .layout-root-menuitem > ul > li.active-menuitem > .layout-submenu .layout-menuitem-icon {
+                        margin-right: 0.5rem;
                     }
                 }
 
