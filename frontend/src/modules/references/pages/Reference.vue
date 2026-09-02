@@ -48,23 +48,37 @@
 
                 <Column selection-mode="multiple" style="width: 3rem" :exportable="false" />
 
-                <Column
+<Column
     v-if="currentSettings.name"
     field="name"
     :header="t('references.model.table.name')"
     sortable
 >
     <template #body="{ data }">
-        <span
-            class="reference-name-link"
-            @click="dialogStore.openEdit(data, type)"
-        >
-            {{ data.name }}
-        </span>
+        <div class="reference-name-cell">
+
+            <img
+                v-if="
+                    type === 'category' &&
+                    currentSettings.image
+                "
+                :src="`${imageUrl}/images/references/${data.image}`"
+                class="reference-name-image"
+            />
+
+            <span
+                class="reference-name-link"
+                @click="dialogStore.openEdit(data, type)"
+            >
+                {{ data.name }}
+            </span>
+
+        </div>
     </template>
 </Column>
 
-                <Column v-if="type === 'category' && currentSettings.parent_category" field="parent_id" :header="t('references.model.table.parent_category')" sortable>
+                <Column v-if="type === 'category' && currentSettings.parent_category" field="parent_id"
+                    :header="t('references.model.table.parent_category')" sortable>
                     <template #body="{ data }">
                         {{ getParentCategoryName(data.parent_id) }}
                     </template>
@@ -185,7 +199,7 @@ import {
 
 
 const { t } = useI18n();
-
+const imageUrl = import.meta.env.VITE_API_URL;
 const route = useRoute();
 const toast = useToast();
 

@@ -17,6 +17,7 @@
             "name": "Name",
             "code": "Code",
             "address": "Address",
+            "image": "Image",
             "description": "Description",
             "status": "Status"
         },

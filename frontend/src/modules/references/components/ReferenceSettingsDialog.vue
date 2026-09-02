@@ -116,10 +116,16 @@ const fields = computed(() => {
 
     // CATEGORY
     if (props.type === 'category') {
-        result.push({
-            key: 'parent_category',
-            label: t('references.model.table.parent_category')
-        });
+        result.push(
+            {
+                key: 'parent_category',
+                label: t('references.model.table.parent_category')
+            },
+            {
+                key: 'image',
+                label: t('references.model.table.image')
+            }
+        );
     }
 
 

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('code', 50)->nullable();
             $table->string('short_name', 20)->nullable();
             $table->foreignId('parent_id')->nullable()->constrained('references')->nullOnDelete();
+            $table->string('image')->default('default.png');
             $table->text('description')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();

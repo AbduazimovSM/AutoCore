@@ -7,6 +7,7 @@ const defaultFields = {
     category: {
         name: true,
         parent_category: true,
+        image: true,
         description: true,
         status: true
     },

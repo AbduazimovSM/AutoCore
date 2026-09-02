@@ -14,6 +14,7 @@ class Reference extends Model
         'code',
         'short_name',
         'parent_id',
+        'image',
         'description',
         'status'
     ];

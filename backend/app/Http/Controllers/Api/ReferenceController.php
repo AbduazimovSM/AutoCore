@@ -86,16 +86,36 @@ class ReferenceController extends Controller
             'data' => $references,
         ], 200);
     }
-    public function store(Request $request){
+
+    public function store(Request $request)
+    {
         $validated = $request->validate([
             'type'        => 'required|string|max:255',
             'name'        => 'required|string|max:255',
             'code'        => 'nullable|string|max:50',
             'short_name'  => 'nullable|string|max:50',
             'parent_id'   => 'nullable|integer',
+            'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'description' => 'nullable|string',
             'status'      => 'required|boolean',
         ]);
+
+        if ($request->hasFile('image')) {
+            $filename =
+                now()->format('Y-m-d-H-i') . '_' .
+                uniqid() . '.' .
+                $request->file('image')->extension();
+
+            $request->file('image')->move(
+                public_path('/images/references/'),
+                $filename
+            );
+
+            $validated['image'] = $filename;
+        } else {
+            $validated['image'] = 'default.png';
+        }
+
         $reference = Reference::create($validated);
 
         return response()->json([
@@ -104,46 +124,108 @@ class ReferenceController extends Controller
         ], 201);
     }
 
-
-    public function update(Request $request, string $id){
+    public function update(Request $request, string $id)
+    {
         $validated = $request->validate([
             'type'        => 'required|string|max:255',
             'name'        => 'required|string|max:255',
             'code'        => 'nullable|string|max:50',
             'short_name'  => 'nullable|string|max:50',
             'parent_id'   => 'nullable|integer',
+            'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'description' => 'nullable|string',
             'status'      => 'required|boolean',
         ]);
 
-    $reference = Reference::findOrFail($id);
-    $reference->update($validated);
+        $reference = Reference::findOrFail($id);
 
-    return response()->json([
-        'message' => 'Запись успешно изменена',
-        'data' => $reference,
-    ]);
-        
+        if ($request->hasFile('image')) {
+            if (
+                $reference->image &&
+                $reference->image !== 'default.png' &&
+                file_exists(
+                    public_path('/images/references/' . $reference->image)
+                )
+            ) {
+                unlink(
+                    public_path('/images/references/' . $reference->image)
+                );
+            }
+
+            $filename =
+                now()->format('Y-m-d-H-i') . '_' .
+                uniqid() . '.' .
+                $request->file('image')->extension();
+
+            $request->file('image')->move(
+                public_path('/images/references/'),
+                $filename
+            );
+
+            $validated['image'] = $filename;
+        }
+
+        $reference->update($validated);
+
+        return response()->json([
+            'message' => 'Запись успешно изменена',
+            'data' => $reference,
+        ]);
     }
 
-
-    public function destroy($id){
+    public function destroy($id)
+    {
         $reference = Reference::findOrFail($id);
+
+        if (
+            $reference->image &&
+            $reference->image !== 'default.png' &&
+            file_exists(
+                public_path('/images/references/' . $reference->image)
+            )
+        ) {
+            unlink(
+                public_path('/images/references/' . $reference->image)
+            );
+        }
+
         $reference->delete();
 
         return response()->json([
             'message' => 'Запись успешно удалена'
         ]);
-
     }
 
-    public function destroySelected(Request $request){
+    public function destroySelected(Request $request)
+    {
         $validated = $request->validate([
             'ids' => ['required', 'array', 'min:1'],
             'ids.*' => ['required', 'integer', 'exists:references,id'],
         ]);
 
-        $deletedCount = Reference::whereIn('id', $validated['ids'])->delete();
+        $references = Reference::whereIn(
+            'id',
+            $validated['ids']
+        )->get();
+
+        foreach ($references as $reference) {
+            if (
+                $reference->image &&
+                $reference->image !== 'default.png' &&
+                file_exists(
+                    public_path('/images/references/' . $reference->image)
+                )
+            ) {
+                unlink(
+                    public_path('/images/references/' . $reference->image)
+                );
+            }
+        }
+
+        $deletedCount = Reference::whereIn(
+            'id',
+            $validated['ids']
+        )->delete();
 
         return response()->json([
             'message' => "Удалено записей: {$deletedCount}",
