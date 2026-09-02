@@ -296,9 +296,16 @@
     display: flex;
     flex-direction: column;
     height: calc(100dvh - 4.2rem);
+    max-height: calc(100dvh - 4.2rem);
+    box-sizing: border-box;
     min-height: 0;
     margin-bottom: 0;
     overflow: hidden;
+}
+
+.universal-page-card > .p-tabmenu,
+.universal-page-card > .p-toolbar {
+    flex: 0 0 auto;
 }
 
 .universal-page-card .p-toolbar-start {
@@ -427,6 +434,9 @@
 
 .base-table .p-datatable-table-container,
 .base-table .p-datatable-wrapper {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: 100%;
     overflow: auto !important;
 }
 
