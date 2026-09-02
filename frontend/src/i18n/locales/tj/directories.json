@@ -1,0 +1,65 @@
+{
+    "counterparties": {
+        "title": "Контрагентҳо",
+
+        "table": {
+            "id": "ID",
+            "name": "Ном",
+            "group": "Гурӯҳ",
+            "region": "Минтақа",
+            "phone": "Телефон",
+            "birth_date": "Санаи таваллуд",
+            "address": "Суроға",
+            "gender": "Ҷинс",
+            "currency": "Асъор",
+            "description": "Тавсиф",
+            "status": "Ҳолат",
+            "active": "Фаъол"
+        },
+
+        "dialog": {
+            "title_counterparty": "Илова ва таҳрири контрагент",
+            "title_confirm": "Тасдиқ"
+        },
+
+        "currency": {
+            "tjs": "Сомонии Тоҷикистон",
+            "usd": "Доллари ИМА",
+            "eur": "Евро",
+            "rub": "Рубли Русия"
+        },
+
+        "gender": {
+            "unknown": "Номаълум",
+            "male": "Мард",
+            "female": "Зан"
+        }
+    },
+
+    "products": {
+        "title": "Номенклатура",
+
+        "table": {
+            "id": "ID",
+            "name": "Ном",
+            "barcode": "Штрихкод",
+            "sku": "Артикул",
+            "type": "Навъ",
+            "category": "Категория",
+            "brand": "Бренд",
+            "unit": "Воҳиди ченак",
+            "min_quantity": "Миқдори ҳадди ақал",
+            "package": "Бастабандӣ",
+            "term": "Муҳлати истифода",
+            "whole": "Яклухт",
+            "image": "Тасвир",
+            "status": "Ҳолат",
+            "view": "Намоишҳо",
+            "description": "Тавсиф"
+        },
+
+        "dialog": {
+            "title_product": "Илова ва таҳрири мол"
+        }
+    }
+}

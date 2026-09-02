@@ -1,0 +1,94 @@
+{
+    "home": "Bosh sahifa",
+
+    "accounting": {
+        "title": "Buxgalteriya",
+        "kassa": "To‘lov hujjatlari",
+        "cash": "Kassadagi naqd pul",
+        "account_statement": "Hisobvaraqdan ko‘chirma",
+        "debt": "O‘zaro hisob-kitoblar",
+        "price": "Narxlar ro‘yxati",
+        "currency": "Valyuta kurslari"
+    },
+
+    "sales": {
+        "title": "Tovarlar savdosi",
+        "add": "Tovarlarni sotish",
+        "list": "Savdolar reyestri",
+        "mobile": "Mobil savdo",
+        "pos": "Savdo oynasi (POS)",
+        "returns": "Qaytarishlar"
+    },
+
+    "purchase": {
+        "title": "Tovarlar xaridi",
+        "add": "Tovarlarni xarid qilish",
+        "list": "Xaridlar reyestri",
+        "returns": "Qaytarishlar"
+    },
+
+    "warehouse": {
+        "title": "Omborlar",
+        "stock_balance": "Tovarlar qoldig‘i",
+        "inventory": "Inventarizatsiya",
+        "transfers": "Ko‘chirish",
+        "write_off": "Tovarlarni hisobdan chiqarish",
+        "print": "Narx yorliqlarini chop etish"
+    },
+
+    "catalog": {
+        "title": "Ma’lumotnomalar",
+        "counterparties": "Kontragentlar",
+        "products": "Nomenklatura",
+        "departments": "Bo‘linmalar",
+        "articles": "Moddalar"
+    },
+
+    "hr": {
+        "title": "Kadrlar va ish haqi",
+        "employees": "Xodimlar",
+        "salary_calc": "Ish haqini hisoblash",
+        "salary_pay": "Ish haqini to‘lash",
+        "debt": "Xodimlar bilan o‘zaro hisob-kitoblar",
+        "position": "Ishga qabul qilish / ko‘chirish"
+    },
+
+    "report": {
+        "title": "Hisobotlar",
+        "sales": "Savdo hisoboti",
+        "purchase": "Xaridlar hisoboti",
+        "goods": "Tovarlar hisoboti",
+        "finance": "Moliyaviy hisobot",
+        "kassa": "Kassa hisoboti",
+        "employee": "Xodimlar hisoboti"
+    },
+
+    "settings": {
+        "title": "Sozlamalar",
+        "account": "Shaxsiy kabinet",
+        "general": "Umumiy sozlamalar",
+        "filials": "Ofislar va filiallar",
+        "users": "Foydalanuvchilar",
+        "plans": "Savdo rejasi",
+        "currency": "Valyutalar",
+        "accounts": "Hisobvaraqlar",
+        "warehouses": "Omborlar",
+        "begin_balance": "Boshlang‘ich qoldiqlar",
+        "documents": "Hujjatlar"
+    },
+
+    "support": {
+        "title": "Qo‘llab-quvvatlash",
+        "guide": "Bosqichma-bosqich qo‘llanma",
+        "soft": "Dasturiy ta’minot",
+        "faq": "Ko‘p so‘raladigan savollar",
+        "video": "Video darslar"
+    },
+
+    "product_tabs": {
+        "products": "Nomenklatura",
+        "category": "Kategoriya",
+        "unit": "O‘lchov birligi",
+        "brand": "Brendlar"
+    }
+}

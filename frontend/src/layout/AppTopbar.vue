@@ -110,7 +110,9 @@ const languagePopover = ref(null);
 
 const languages = [
     { label: 'English', code: 'en' },
-    { label: 'Русский', code: 'ru' }
+    { label: 'Русский', code: 'ru' },
+    { label: 'Тоҷикӣ', code: 'tj' },
+    { label: 'O‘zbekcha', code: 'uz' }
 ];
 
 function handleLogoClick(event) {

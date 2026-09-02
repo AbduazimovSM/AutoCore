@@ -1,0 +1,65 @@
+{
+    "counterparties": {
+        "title": "Kontragentlar",
+
+        "table": {
+            "id": "ID",
+            "name": "Nomi",
+            "group": "Guruh",
+            "region": "Hudud",
+            "phone": "Telefon",
+            "birth_date": "Tug‘ilgan sana",
+            "address": "Manzil",
+            "gender": "Jinsi",
+            "currency": "Valyuta",
+            "description": "Tavsif",
+            "status": "Holati",
+            "active": "Faol"
+        },
+
+        "dialog": {
+            "title_counterparty": "Kontragentni qo‘shish va tahrirlash",
+            "title_confirm": "Tasdiqlash"
+        },
+
+        "currency": {
+            "tjs": "Tojikiston somoniysi",
+            "usd": "AQSH dollari",
+            "eur": "Yevro",
+            "rub": "Rossiya rubli"
+        },
+
+        "gender": {
+            "unknown": "Noma’lum",
+            "male": "Erkak",
+            "female": "Ayol"
+        }
+    },
+
+    "products": {
+        "title": "Nomenklatura",
+
+        "table": {
+            "id": "ID",
+            "name": "Nomi",
+            "barcode": "Shtrix-kod",
+            "sku": "Artikul",
+            "type": "Turi",
+            "category": "Kategoriya",
+            "brand": "Brend",
+            "unit": "O‘lchov birligi",
+            "min_quantity": "Min. miqdor",
+            "package": "Qadoq",
+            "term": "Yaroqlilik muddati",
+            "whole": "Ulgurji",
+            "image": "Rasm",
+            "status": "Holati",
+            "view": "Ko‘rishlar",
+            "description": "Tavsif"
+        },
+
+        "dialog": {
+            "title_product": "Tovarni qo‘shish va tahrirlash"
+        }
+    }
+}

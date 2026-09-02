@@ -1,0 +1,29 @@
+{
+    "model": {
+        "table": {
+            "company": "Kompaniya",
+            "filial": "Filial",
+            "category": "Kategoriya",
+            "parent_category": "Asosiy kategoriya",
+            "unit": "O‘lchov birligi",
+            "short_name": "Qisqa nomi",
+            "brand": "Brend",
+            "group": "Guruh",
+            "region": "Hudud",
+            "specialty": "Mutaxassislik",
+            "institution": "Ta’lim muassasasi",
+            "role": "Rol",
+            "id": "ID",
+            "name": "Nomi",
+            "code": "Kod",
+            "address": "Manzil",
+            "description": "Tavsif",
+            "status": "Holati"
+        },
+
+        "dialog": {
+            "title_reference": "Qo‘shish va tahrirlash",
+            "title_confirm": "Tasdiqlash"
+        }
+    }
+}

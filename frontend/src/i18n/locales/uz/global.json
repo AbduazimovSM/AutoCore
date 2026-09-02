@@ -1,0 +1,72 @@
+{
+    "app": {
+        "title": "AutoCore | Avtomatlashtirish yadrosi"
+    },
+
+    "buttons": {
+        "cancel": "Bekor qilish",
+        "save": "Saqlash",
+        "no": "Yo‘q",
+        "yes": "Ha",
+        "create": "Yaratish",
+        "update": "O‘zgartirish",
+        "delete": "O‘chirish",
+        "confirm": "Tasdiqlash",
+        "refresh": "Yangilash",
+        "clear": "Tozalash",
+        "select": "Tanlash",
+        "close": "Yopish",
+        "add": "Qo‘shish",
+        "search": "Qidirish…",
+        "back": "Orqaga"
+    },
+
+    "pagination": {
+        "report": "{totalRecords} ta yozuvdan {first} dan {last} gacha ko‘rsatildi",
+        "empty": "Yozuvlar mavjud emas"
+    },
+
+    "messages": {
+        "confirm_delete": "Haqiqatan ham «{name}» yozuvini o‘chirmoqchimisiz?",
+        "confirm_delete_selected": "Haqiqatan ham tanlangan ({count}) ta yozuvni o‘chirmoqchimisiz?",
+        "no_data": "Ma’lumotlar mavjud emas",
+        "loading": "Yuklanmoqda…",
+        "required": "Majburiy maydon"
+    },
+
+    "toast": {
+        "success": "Muvaffaqiyatli",
+        "error": "Xatolik",
+        "warning": "Ogohlantirish",
+        "confirmation": "Tasdiqlash",
+        "info": "Ma’lumot"
+    },
+
+    "success": {
+        "created": "Yozuv muvaffaqiyatli yaratildi",
+        "updated": "Yozuv muvaffaqiyatli o‘zgartirildi",
+        "deleted": "Yozuv muvaffaqiyatli o‘chirildi",
+        "saved": "Ma’lumotlar muvaffaqiyatli saqlandi",
+        "delete_selected": "Tanlangan yozuvlar muvaffaqiyatli o‘chirildi"
+    },
+
+    "errors": {
+        "load_failed": "Ma’lumotlarni yuklab bo‘lmadi",
+        "save_failed": "Ma’lumotlarni saqlab bo‘lmadi",
+        "delete_failed": "Yozuvni o‘chirib bo‘lmadi",
+        "delete_selected_failed": "Tanlangan yozuvlarni o‘chirib bo‘lmadi",
+        "error": "Xatolik yuz berdi"
+    },
+
+    "status": {
+        "active": "Faol",
+        "inactive": "Faol emas"
+    },
+
+    "settings": {
+        "title": "Sozlamalar",
+        "column_name": "Ustun nomi",
+        "visibility": "Ko‘rinishi",
+        "reset_settings": "Sozlamalarni tiklash"
+    }
+}

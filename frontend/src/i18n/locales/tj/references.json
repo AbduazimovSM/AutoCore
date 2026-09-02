@@ -1,0 +1,29 @@
+{
+    "model": {
+        "table": {
+            "company": "Ширкат",
+            "filial": "Филиал",
+            "category": "Категория",
+            "parent_category": "Категорияи волидайн",
+            "unit": "Воҳиди ченак",
+            "short_name": "Номи кӯтоҳ",
+            "brand": "Бренд",
+            "group": "Гурӯҳ",
+            "region": "Минтақа",
+            "specialty": "Ихтисос",
+            "institution": "Муассисаи таълимӣ",
+            "role": "Нақш",
+            "id": "ID",
+            "name": "Ном",
+            "code": "Рамз",
+            "address": "Суроға",
+            "description": "Тавсиф",
+            "status": "Ҳолат"
+        },
+
+        "dialog": {
+            "title_reference": "Илова ва таҳрир",
+            "title_confirm": "Тасдиқ"
+        }
+    }
+}
