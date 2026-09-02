@@ -40,9 +40,10 @@ function handleBrandClick(event) {
                 type="button"
                 class="sidebar-toggle"
                 @click="toggleMenu"
-                aria-label="Меню"
+                aria-label="Свернуть меню"
+                title="Свернуть меню"
             >
-                <i class="pi pi-bars"></i>
+                <i class="pi pi-angle-double-left"></i>
             </button>
         </div>
 
