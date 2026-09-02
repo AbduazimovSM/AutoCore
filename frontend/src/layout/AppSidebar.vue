@@ -36,7 +36,10 @@ const { toggleMenu, layoutState } = useLayout();
                 :aria-label="layoutState.staticMenuDesktopInactive ? 'Открыть меню' : 'Свернуть меню'"
                 :title="layoutState.staticMenuDesktopInactive ? 'Открыть меню' : 'Свернуть меню'"
             >
-                <i :class="['pi', layoutState.staticMenuDesktopInactive ? 'pi-angle-double-right' : 'pi-angle-double-left']"></i>
+                <svg class="sidebar-toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M8 4V20" stroke="currentColor" stroke-width="1.8" />
+                </svg>
             </button>
         </div>
 
@@ -142,6 +145,11 @@ const { toggleMenu, layoutState } = useLayout();
 
 .sidebar-toggle i {
     font-size: 1.25rem;
+}
+
+.sidebar-toggle-icon {
+    width: 1.35rem;
+    height: 1.35rem;
 }
 
 .sidebar-content {

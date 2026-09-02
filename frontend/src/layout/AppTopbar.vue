@@ -27,7 +27,10 @@
             </router-link>
 
             <button class="layout-menu-button layout-topbar-action ms-8" @click="toggleMenu">
-                <i class="pi pi-bars"></i>
+                <svg class="topbar-sidebar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M8 4V20" stroke="currentColor" stroke-width="1.8" />
+                </svg>
             </button>
         </div>
 
@@ -134,6 +137,11 @@ async function selectLanguage(lang) {
 </script>
 
 <style scoped>
+.topbar-sidebar-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
 .language-button {
     width: auto !important;
     min-width: 4.5rem;
