@@ -115,7 +115,7 @@
                 <Menu ref="actionsMenu" :model="actionItems" :popup="true" />
             </DataTable>
             <Paginator class="isp-paginator" style="border: 1px solid var(--surface-border)" :rows="rows" :first="first"
-                :totalRecords="total" :rowsPerPageOptions="[5, 10, 25, 50, 100]"
+                :totalRecords="total" :rowsPerPageOptions="[10, 25, 50, 100, 500, 1000, 10000,100000]"
                 template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown JumpToPageInput"
                 @page="onPage">
                 <template #start>
