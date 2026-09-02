@@ -16,6 +16,17 @@ export const useProductDialogStore = defineStore('productDialog', () => {
         visible.value = true;
     }
 
+    function openCopy(item) {
+    product.value = {
+        ...item,
+        id: null,
+        barcode: '',
+        sku: ''
+    };
+
+    visible.value = true;
+}
+
     function close() {
         visible.value = false;
         product.value = null;
@@ -37,6 +48,7 @@ export const useProductDialogStore = defineStore('productDialog', () => {
         changed,
         openNew,
         openEdit,
+        openCopy,
         close,
         saved,
         resetChanged

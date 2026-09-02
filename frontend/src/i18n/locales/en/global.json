@@ -9,6 +9,7 @@
         "yes": "Yes",
         "create": "Create",
         "update": "Update",
+        "copy": "Copy",
         "delete": "Delete",
         "confirm": "Confirm",
         "refresh": "Refresh",
