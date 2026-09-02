@@ -23,6 +23,17 @@ export const useReferenceDialogStore = defineStore('referenceDialog', () => {
         savedReference.value = null;
         visible.value = true;
     }
+    function openCopy(item, referenceType) {
+    type.value = referenceType;
+
+    reference.value = {
+        ...item,
+        id: null
+    };
+
+    savedReference.value = null;
+    visible.value = true;
+}
 
     function close() {
         visible.value = false;
@@ -48,7 +59,7 @@ export const useReferenceDialogStore = defineStore('referenceDialog', () => {
         type,
         changed,
         savedReference,
-
+        openCopy,
         openNew,
         openEdit,
         close,

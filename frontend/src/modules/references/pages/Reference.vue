@@ -246,6 +246,16 @@ const actionItems = computed(() => [
         }
     },
     {
+        label: t('global.buttons.copy'),
+        icon: 'pi pi-copy',
+        command: () => {
+            dialogStore.openCopy(
+                selectedReference.value,
+                type.value
+            );
+        }
+    },
+    {
         label: t('global.buttons.delete'),
         icon: 'pi pi-trash',
         command: () => {
