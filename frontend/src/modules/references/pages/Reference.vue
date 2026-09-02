@@ -48,34 +48,22 @@
 
                 <Column selection-mode="multiple" style="width: 3rem" :exportable="false" />
 
-<Column
-    v-if="currentSettings.name"
-    field="name"
-    :header="t('references.model.table.name')"
-    sortable
->
-    <template #body="{ data }">
-        <div class="reference-name-cell">
+                <Column v-if="currentSettings.name" field="name" :header="t('references.model.table.name')" sortable>
+                    <template #body="{ data }">
+                        <div class="reference-name-cell">
 
-            <img
-                v-if="
-                    type === 'category' &&
-                    currentSettings.image
-                "
-                :src="`${imageUrl}/images/references/${data.image}`"
-                class="reference-name-image"
-            />
+                            <img v-if="
+                                type === 'category' &&
+                                currentSettings.image
+                            " :src="`${imageUrl}/images/references/${data.image}`" class="reference-name-image" @click="openImage(data)" />
 
-            <span
-                class="reference-name-link"
-                @click="dialogStore.openEdit(data, type)"
-            >
-                {{ data.name }}
-            </span>
+                            <span class="reference-name-link" @click="dialogStore.openEdit(data, type)">
+                                {{ data.name }}
+                            </span>
 
-        </div>
-    </template>
-</Column>
+                        </div>
+                    </template>
+                </Column>
 
                 <Column v-if="type === 'category' && currentSettings.parent_category" field="parent_id"
                     :header="t('references.model.table.parent_category')" sortable>
@@ -165,6 +153,12 @@
 
         <DeleteReferencesDialog v-model="deleteReferencesDialog" :count="selectedReferences.length"
             :loading="loadingDeleteReferences" @confirm="destroyReferences" />
+        <Dialog v-model:visible="imageDialog" :header="selectedImageName" modal dismissableMask maximizable
+            :style="{ width: '600px' }" :breakpoints="{ '768px': '95vw' }" class="reference-image-dialog">
+            <div class="reference-image-preview">
+                <img :src="selectedImage" :alt="selectedImageName" />
+            </div>
+        </Dialog>
     </div>
 </template>
 
@@ -205,7 +199,17 @@ const toast = useToast();
 
 const dialogStore = useReferenceDialogStore();
 const referenceSettings = useReferenceSettingsStore();
+const imageDialog = ref(false);
+const selectedImage = ref(null);
+const selectedImageName = ref('');
 
+function openImage(reference) {
+    selectedImage.value =
+        `${imageUrl}/images/references/${reference.image}`;
+
+    selectedImageName.value = reference.name;
+    imageDialog.value = true;
+}
 
 const referenceSettingsDialog = ref(false);
 

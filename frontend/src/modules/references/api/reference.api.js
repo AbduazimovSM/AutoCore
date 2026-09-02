@@ -18,7 +18,8 @@ export function createReference(data) {
 }
 
 export function updateReference(id, data) {
-    return http.put(`/references/${id}`, data);
+    data.append('_method', 'PUT');
+    return http.post(`/references/${id}`, data);
 }
 
 export function deleteReference(id) {
