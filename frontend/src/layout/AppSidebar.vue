@@ -3,6 +3,14 @@ import AppMenu from './AppMenu.vue';
 import { useLayout } from '@/layout/composables/layout';
 
 const { toggleMenu, layoutState } = useLayout();
+
+function handleToggleMenu() {
+    if (!layoutState.staticMenuDesktopInactive) {
+        layoutState.activeMenuItem = null;
+    }
+
+    toggleMenu();
+}
 </script>
 
 <template>
@@ -32,7 +40,7 @@ const { toggleMenu, layoutState } = useLayout();
             <button
                 type="button"
                 class="sidebar-toggle"
-                @click="toggleMenu"
+                @click="handleToggleMenu"
                 :aria-label="layoutState.staticMenuDesktopInactive ? 'Открыть меню' : 'Свернуть меню'"
                 :title="layoutState.staticMenuDesktopInactive ? 'Открыть меню' : 'Свернуть меню'"
             >
