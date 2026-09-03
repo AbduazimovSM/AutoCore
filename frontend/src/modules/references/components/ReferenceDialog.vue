@@ -178,7 +178,7 @@ async function loadCategories(search = '') {
     const response = await getReferences(
         'category',
         1,
-        100,
+        100000,
         'name',
         'asc',
         search

@@ -46,7 +46,6 @@ class ReferenceController extends Controller
         }
 
         $perPage = $request->integer('per_page', 10);
-        $perPage = min(max($perPage, 1), 100);
 
         $allowedSortFields = [
             'id',
