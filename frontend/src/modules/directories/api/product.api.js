@@ -37,3 +37,9 @@ export function deleteProducts(ids) {
         data: { ids }
     });
 }
+
+export function generateProductBarcode(key) {
+    return http.get('/products/generate-barcode', {
+        params: { key }
+    });
+}

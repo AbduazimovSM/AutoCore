@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Reference;
+
 use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
@@ -240,5 +242,106 @@ public function index(Request $request)
             'message' => "Удалено товаров: {$deletedCount}",
             'deleted_count' => $deletedCount
         ], 200);
+    }
+
+    public function generateBarcode(Request $request)
+    {
+        $request->validate([
+            'key' => ['required', 'integer', 'in:1,2'],
+        ]);
+
+        $key = (int) $request->key;
+
+        /*
+        |--------------------------------------------------------------------------
+        | ШТ — EAN-13
+        |--------------------------------------------------------------------------
+        */
+        if ($key === 1) {
+
+            $product = Product::where('barcode', 'LIKE', '20100%')
+                ->orderByRaw('CAST(barcode AS UNSIGNED) DESC')
+                ->first();
+
+            // Если таких товаров ещё нет
+            $newBarcode = '2010000000014';
+
+            if ($product) {
+
+                // Берём первые 12 цифр предыдущего EAN-13
+                // и увеличиваем номер на 1
+                $barcode12 = (string) (
+                    (int) substr($product->barcode, 0, 12) + 1
+                );
+
+                $barcode12 = str_pad(
+                    $barcode12,
+                    12,
+                    '0',
+                    STR_PAD_LEFT
+                );
+
+                $sumOdd = 0;
+                $sumEven = 0;
+
+                // Первые 12 цифр
+                for ($i = 0; $i < 12; $i++) {
+
+                    $digit = (int) $barcode12[$i];
+
+                    if ($i % 2 === 0) {
+                        $sumOdd += $digit;
+                    } else {
+                        $sumEven += $digit;
+                    }
+                }
+
+                // EAN-13 контрольная цифра
+                $sum = ($sumOdd + (3 * $sumEven)) % 10;
+
+                $checkDigit = (10 - $sum) % 10;
+
+                $newBarcode = $barcode12 . $checkDigit;
+            }
+
+            return response()->json([
+                'success' => true,
+                'new_barcode' => $newBarcode,
+            ]);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | КГ
+        |--------------------------------------------------------------------------
+        */
+
+        $kgUnitId = Reference::where('type', 'unit')
+            ->where(function ($query) {
+                $query
+                    ->where('short_name', 'кг')
+                    ->orWhere('name', 'Килограмм');
+            })
+            ->value('id');
+
+        if (!$kgUnitId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Единица измерения "кг" не найдена',
+            ], 422);
+        }
+
+        $newBarcode = Product::selectRaw(
+            'COALESCE(MAX(CAST(barcode AS UNSIGNED)), 0) + 1 AS barcode'
+        )
+            ->where('unit_id', $kgUnitId)
+            ->whereRaw("barcode REGEXP '^[0-9]+$'")
+            ->whereRaw('CAST(barcode AS UNSIGNED) < 100000')
+            ->value('barcode');
+
+        return response()->json([
+            'success' => true,
+            'new_barcode' => (string) $newBarcode,
+        ]);
     }
 }

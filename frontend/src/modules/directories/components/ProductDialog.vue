@@ -18,14 +18,33 @@
                 </small>
             </div>
 
-            <div v-if="productSettings.fields.barcode" class="field">
-                <FloatLabel variant="on">
-                    <InputText id="barcode" v-model.trim="product.barcode" fluid />
-                    <label for="barcode">
-                        {{ t('directories.products.table.barcode') }}
-                    </label>
-                </FloatLabel>
-            </div>
+<div v-if="productSettings.fields.barcode" class="field">
+    <div class="barcode-field">
+        <FloatLabel variant="on" class="barcode-input">
+            <InputText
+                id="barcode"
+                v-model.trim="product.barcode"
+                fluid
+            />
+
+            <label for="barcode">
+                {{ t('directories.products.table.barcode') }}
+            </label>
+        </FloatLabel>
+
+        <Button
+            type="button"
+            label="ШТ"
+            @click="createNewBarcode(1)"
+        />
+
+        <Button
+            type="button"
+            label="КГ"
+            @click="createNewBarcode(2)"
+        />
+    </div>
+</div>
 
             <div v-if="productSettings.fields.sku" class="field">
                 <FloatLabel variant="on">
@@ -152,7 +171,8 @@ import AppTreeSelect from '@/components/AppTreeSelect.vue';
 
 import {
     createProduct,
-    updateProduct
+    updateProduct,
+    generateProductBarcode
 } from '@/modules/directories/api/product.api';
 
 import {
@@ -242,6 +262,53 @@ async function loadUnits(search = '') {
     );
 
     return response.data.data.data;
+}
+
+async function createNewBarcode(key) {
+    try {
+        const response = await generateProductBarcode(key);
+
+        product.value.barcode = response.data.new_barcode;
+
+        const units = await loadUnits();
+
+        // ШТ
+        if (key === 1) {
+            const unit = units.find(item =>
+                item.short_name?.trim().toLowerCase() === 'шт' ||
+                item.name?.trim().toLowerCase() === 'штука'
+            );
+
+            if (unit) {
+                product.value.unit_id = unit.id;
+            }
+        }
+
+        // КГ
+        if (key === 2) {
+            const unit = units.find(item =>
+                item.short_name?.trim().toLowerCase() === 'кг' ||
+                item.name?.trim().toLowerCase() === 'килограмм'
+            );
+
+            if (unit) {
+                product.value.unit_id = unit.id;
+            }
+        }
+
+    } catch (error) {
+        console.error(
+            'Ошибка генерации штрихкода:',
+            error.response?.data || error
+        );
+
+        toast.add({
+            severity: 'error',
+            summary: t('global.toast.error'),
+            detail: 'Не удалось создать штрихкод',
+            life: 3000
+        });
+    }
 }
 
 async function loadBrands(search = '') {
@@ -451,5 +518,20 @@ async function saveProduct() {
     .field-full {
         grid-column: auto;
     }
+}
+
+.barcode-field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.barcode-input {
+    flex: 1;
+    min-width: 0;
+}
+
+.barcode-field :deep(.p-button) {
+    flex: 0 0 auto;
 }
 </style>
